@@ -78,7 +78,17 @@
     });
   });
 
-  /* ── 8. SERVICE ACCORDION ── */
+  /* ── 8. 개인정보 [자세히] 토글 ── */
+  document.querySelectorAll('.privacy-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const detail = btn.closest('.float-agree').nextElementSibling;
+      if (!detail || !detail.classList.contains('privacy-detail')) return;
+      const isOpen = detail.classList.toggle('open');
+      btn.textContent = isOpen ? '[닫기]' : '[자세히]';
+    });
+  });
+
+  /* ── 9. SERVICE ACCORDION ── */
   document.querySelectorAll('.acc-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
       const item = trigger.closest('.acc-item');
