@@ -1,0 +1,7 @@
+{
+  "routes": [
+    { "src": "/", "dest": "/rasa_redesign.html" },
+    { "src": "/service", "dest": "/rasa_service.html" },
+    { "src": "/campaign", "dest": "/rasa_campaign.html" }
+  ]
+}
