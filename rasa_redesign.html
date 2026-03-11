@@ -610,25 +610,22 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// 태그라인 스크롤 진입 시 opacity 1 고정
+// 태그라인 — 중앙 아래면 흐림, 중앙 도달 후 선명 유지
 (function(){
   const rows = document.querySelectorAll('.tagline-row');
   if(!rows.length) return;
-  const done = new Set();
 
   function update() {
-    const vH = window.innerHeight;
+    const vCenter = window.innerHeight / 2;
+    const fadeRange = window.innerHeight * 0.45;
     rows.forEach(row => {
-      if(done.has(row)) return;
       const rect = row.getBoundingClientRect();
       const rowCenter = rect.top + rect.height / 2;
-      // 뷰포트 70% 지점에 들어오면 reveal 시작 → 50% 지점에서 완료
-      const progress = Math.max(0, Math.min(1, (vH * 0.75 - rowCenter) / (vH * 0.25)));
-      row.style.opacity = 0.06 + 0.94 * progress;
-      if(progress >= 1) {
-        done.add(row);
+      if(rowCenter <= vCenter) {
         row.style.opacity = 1;
-        row.style.transition = 'none';
+      } else {
+        const dist = rowCenter - vCenter;
+        row.style.opacity = Math.max(0.06, 1 - dist / fadeRange);
       }
     });
   }
