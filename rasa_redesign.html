@@ -212,7 +212,7 @@ img{display:block;max-width:100%}
 .tagline-row{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,28px);line-height:1;padding:4px 0}
 .tl-word{font-family:var(--f-head);font-size:clamp(36px,6vw,88px);font-weight:700;letter-spacing:-.04em;white-space:nowrap;color:var(--text)}
 .tl-word.muted{color:rgba(17,17,17,.2)}
-.tagline-row{transition:opacity .4s ease}
+.tagline-row{opacity:0.06;transition:opacity .7s cubic-bezier(.16,1,.3,1)}
 .tl-img{width:clamp(60px,7vw,110px);height:clamp(40px,4.5vw,72px);border-radius:12px;overflow:hidden;flex-shrink:0;background:#C8C4BF;display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:#999;letter-spacing:.05em}
 .tl-img.rot-l{transform:rotate(-8deg)}
 .tl-img.rot-r{transform:rotate(7deg)}
@@ -610,20 +610,26 @@ mobileMenu.querySelectorAll('a').forEach(a => {
   });
 });
 
-// 태그라인 스크롤 opacity 연동
+// 태그라인 스크롤 진입 시 opacity 1 고정
 (function(){
   const rows = document.querySelectorAll('.tagline-row');
   if(!rows.length) return;
+  const done = new Set();
 
   function update() {
-    const vCenter = window.innerHeight / 2;
+    const vH = window.innerHeight;
     rows.forEach(row => {
+      if(done.has(row)) return;
       const rect = row.getBoundingClientRect();
       const rowCenter = rect.top + rect.height / 2;
-      const distance = Math.abs(rowCenter - vCenter);
-      const maxDist = window.innerHeight * 0.48;
-      const opacity = Math.max(0.12, 1 - (distance / maxDist) * 0.95);
-      row.style.opacity = opacity;
+      // 뷰포트 70% 지점에 들어오면 reveal 시작 → 50% 지점에서 완료
+      const progress = Math.max(0, Math.min(1, (vH * 0.75 - rowCenter) / (vH * 0.25)));
+      row.style.opacity = 0.06 + 0.94 * progress;
+      if(progress >= 1) {
+        done.add(row);
+        row.style.opacity = 1;
+        row.style.transition = 'none';
+      }
     });
   }
 
