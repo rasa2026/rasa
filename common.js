@@ -78,7 +78,15 @@
     });
   });
 
-  /* ── 8. 개인정보 [자세히] 토글 ── */
+  /* ── 8. 모바일 하단 CTA 바 스크롤 show ── */
+  const mBottomBar = document.querySelector('.m-bottom-bar');
+  if (mBottomBar) {
+    window.addEventListener('scroll', () => {
+      mBottomBar.classList.toggle('show', window.scrollY > 80);
+    }, { passive: true });
+  }
+
+  /* ── 9. 개인정보 [자세히] 토글 ── */
   document.querySelectorAll('.privacy-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const detail = btn.closest('.float-agree').nextElementSibling;
@@ -88,7 +96,7 @@
     });
   });
 
-  /* ── 9. SERVICE ACCORDION ── */
+  /* ── 10. SERVICE ACCORDION ── */
   document.querySelectorAll('.acc-trigger').forEach(trigger => {
     trigger.addEventListener('click', () => {
       const item = trigger.closest('.acc-item');
