@@ -81,8 +81,12 @@
   /* ── 8. 모바일 하단 CTA 바 스크롤 show ── */
   const mBottomBar = document.querySelector('.m-bottom-bar');
   if (mBottomBar) {
+    let scrollTimer;
     window.addEventListener('scroll', () => {
       mBottomBar.classList.toggle('show', window.scrollY > 80);
+      mBottomBar.classList.add('scrolling');
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => mBottomBar.classList.remove('scrolling'), 400);
     }, { passive: true });
   }
 
