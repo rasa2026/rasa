@@ -4,6 +4,8 @@
     { "src": "/rasa_redesign.html", "dest": "/rasa_redesign.html" },
     { "src": "/rasa_service.html", "dest": "/rasa_service.html" },
     { "src": "/rasa_campaign.html", "dest": "/rasa_campaign.html" },
-    { "src": "/rasa_campaign_detail.html", "dest": "/rasa_campaign_detail.html" }
+    { "src": "/rasa_campaign_detail.html", "dest": "/rasa_campaign_detail.html" },
+    { "src": "/common.css", "dest": "/common.css" },
+    { "src": "/common.js", "dest": "/common.js" }
   ]
 }

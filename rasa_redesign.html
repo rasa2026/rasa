@@ -4,126 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RASA — 답이 느린 대행사는 이제 그만</title>
+<link rel="stylesheet" href="common.css">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
-@font-face{font-family:'GMarketSans';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');font-weight:700;font-display:swap}
-@font-face{font-family:'GMarketSans';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');font-weight:500;font-display:swap}
-@font-face{font-family:'Suit';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
-@font-face{font-family:'Suit';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
-@font-face{font-family:'Suit';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
-@font-face{font-family:'Suit';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
-
-:root{
-  --accent:#0584F4;
-  --accent-dark:#0469C3;
-  --bg:#FFFFFF;
-  --bg-subtle:#F6F7F8;
-  --bg-dark:#0A0A0A;
-  --text:#111111;
-  --text-muted:#6B6B6B;
-  --border:rgba(0,0,0,0.08);
-  --border-dark:rgba(255,255,255,0.10);
-  --f-head:'GMarketSans','Noto Sans KR',sans-serif;
-  --f-sans:'Suit','Noto Sans KR',sans-serif;
-  --f-en:'Montserrat',sans-serif;
-  --px:clamp(24px,5vw,80px);
-  --py:clamp(80px,10vw,140px);
-  --gap-lg:clamp(48px,6vw,80px);
-  --gap-md:clamp(24px,3vw,40px);
-  --gap-sm:clamp(12px,1.5vw,20px);
-  --title-xl:clamp(36px,5vw,64px);
-  --title-lg:clamp(28px,3.5vw,48px);
-  --body-size:clamp(14px,1.2vw,16px);
-  --max:1440px;
-  --nav-h:64px;
-}
-
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--f-sans);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-button{cursor:pointer;font-family:inherit;border:none}
-img{display:block;max-width:100%}
-
-.wrap{width:100%;max-width:calc(var(--max) + var(--px)*2);margin:0 auto;padding:0 var(--px)}
-.ph{background:#D8D4CF;display:flex;align-items:center;justify-content:center;color:#888;font-family:var(--f-sans);font-size:11px;font-weight:500;letter-spacing:.1em;text-align:center;padding:8px}
-
-/* IX-01 스크롤 리빌 */
-[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-[data-reveal].revealed{opacity:1;transform:none}
-/* IX-02 카드 stagger — fadeIn */
-[data-slide]{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
-[data-slide].revealed{opacity:1;transform:none}
-[data-slide]:nth-child(1){transition-delay:.00s}[data-slide]:nth-child(2){transition-delay:.10s}
-[data-slide]:nth-child(3){transition-delay:.20s}[data-slide]:nth-child(4){transition-delay:.30s}
-[data-slide]:nth-child(5){transition-delay:.40s}[data-slide]:nth-child(6){transition-delay:.50s}
-/* IX-03 텍스트 라인 리빌 */
-.text-reveal-wrap{overflow:hidden}
-.text-reveal-line{display:block;transform:translateY(110%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
-.text-reveal-line.revealed{transform:translateY(0)}
-.text-reveal-line:nth-child(1){transition-delay:0s}
-.text-reveal-line:nth-child(2){transition-delay:.08s}
-.text-reveal-line:nth-child(3){transition-delay:.16s}
-
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-sans);font-weight:600;font-size:14px;padding:14px 28px;border-radius:2px;transition:all .2s;border:none}
-.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:var(--accent-dark)}
-.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}.btn-outline:hover{border-color:#fff;background:rgba(255,255,255,.08)}
-.btn-outline-dark{background:transparent;color:var(--text);border:1.5px solid rgba(0,0,0,.25)}.btn-outline-dark:hover{border-color:var(--text);background:var(--text);color:#fff}
-.btn-lg{padding:18px 40px;font-size:15px}
-
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;background:#0A0A0A}
-.nav-inner{max-width:calc(var(--max) + var(--px)*2);margin:0 auto;height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--px)}
-.nav-logo{font-family:var(--f-en);font-weight:800;color:#fff;font-size:18px;letter-spacing:.08em}
-.nav-logo span{color:var(--accent)}
-.nav-links{display:flex;align-items:center;justify-content:center;gap:40px}
-.nav-links a{font-family:var(--f-sans);font-size:12px;font-weight:600;color:rgba(255,255,255,.65);letter-spacing:.14em;text-transform:uppercase;transition:color .2s}
-.nav-links a:hover{color:#fff}
-.nav-right{display:flex;justify-content:flex-end;align-items:center;gap:12px}
-.nav-cta{background:var(--accent);color:#fff;font-family:var(--f-sans);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:10px 22px;border-radius:2px;transition:background .2s;white-space:nowrap}
-.nav-cta:hover{background:var(--accent-dark)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
-.hamburger span{display:block;width:22px;height:2px;background:#fff;transition:all .3s}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-menu{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:#0A0A0A;padding:24px var(--px);flex-direction:column;gap:20px;z-index:99;border-top:1px solid rgba(255,255,255,.08)}
-.mobile-menu.open{display:flex}
-.mobile-menu a{font-family:var(--f-sans);font-size:14px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
-.mobile-menu a:hover{color:#fff}
-.mobile-menu .m-cta{background:var(--accent);color:#fff;padding:12px 20px;border-radius:2px;text-align:center;margin-top:8px}
-
-/* FLOATING FORM — 데스크탑 */
-.floating-form{position:fixed;top:50%;right:0;transform:translateY(-50%) translateX(0);width:260px;background:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;padding:26px 22px;z-index:99;box-shadow:-4px 0 24px rgba(0,0,0,.07);transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.floating-form.collapsed{transform:translateY(-50%) translateX(260px)}
-.float-toggle{position:absolute;left:-36px;top:50%;transform:translateY(-50%);width:36px;height:52px;background:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:-3px 0 12px rgba(0,0,0,.06);font-size:11px;color:var(--text-muted);transition:background .2s}
-.float-toggle:hover{background:var(--bg-subtle)}
-.float-toggle svg{width:14px;height:14px;transition:transform .4s}
-.floating-form.collapsed .float-toggle svg{transform:rotate(180deg)}
-.float-title{font-family:var(--f-head);font-size:14px;font-weight:700;margin-bottom:4px}
-.float-sub{font-size:11px;color:var(--text-muted);margin-bottom:16px;line-height:1.6}
-.float-field{margin-bottom:10px}
-.float-field label{display:block;font-size:11px;font-weight:500;color:var(--text-muted);margin-bottom:4px}
-.float-field input{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:2px;font-family:var(--f-sans);font-size:13px;outline:none;transition:border-color .2s}
-.float-field input:focus{border-color:var(--accent)}
-.float-agree{font-size:10px;color:#aaa;margin-bottom:12px;display:flex;align-items:flex-start;gap:5px;line-height:1.5}
-.float-agree input{width:auto;margin-top:2px;flex-shrink:0}
-.float-submit{width:100%;background:var(--accent);color:#fff;font-family:var(--f-sans);font-weight:600;font-size:13px;padding:11px;border-radius:2px;border:none;cursor:pointer;transition:background .2s}
-.float-submit:hover{background:var(--accent-dark)}
-
-/* MOBILE CTA — 전화 아이콘 고정 버튼 */
-.m-call-btn{display:none;position:fixed;bottom:24px;right:20px;z-index:200;width:56px;height:56px;background:var(--accent);border-radius:50%;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,92,26,.4);cursor:pointer;border:none;transition:transform .2s,background .2s}
-.m-call-btn:hover{transform:scale(1.08);background:var(--accent-dark)}
-.m-call-btn svg{width:24px;height:24px;fill:#fff}
-.m-form-sheet{display:none;position:fixed;bottom:0;left:0;right:0;z-index:201;background:#fff;border-radius:20px 20px 0 0;padding:28px 24px 40px;box-shadow:0 -8px 40px rgba(0,0,0,.15);transform:translateY(100%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
-.m-form-sheet.open{transform:translateY(0)}
-.m-sheet-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 20px}
-.m-sheet-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:22px;color:var(--text-muted);cursor:pointer;line-height:1}
-.m-sheet-title{font-family:var(--f-head);font-size:16px;font-weight:700;margin-bottom:4px}
-.m-sheet-sub{font-size:12px;color:var(--text-muted);margin-bottom:20px;line-height:1.6}
-.m-sheet-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200}
-.m-sheet-overlay.open{display:block}
-
 /* HERO */
 .hero{position:relative;width:100%;height:100vh;min-height:640px;overflow:hidden;padding-top:var(--nav-h)}
 .hero-bg{position:absolute;inset:0;background:#1a1a1a}
@@ -137,9 +19,6 @@ img{display:block;max-width:100%}
 /* SOCIAL BAR */
 .social-bar{background:var(--bg);padding:clamp(40px,5vw,64px) 0;overflow:hidden}
 .social-bar .s-label{text-align:center;display:block;margin-bottom:28px;font-size:15px;font-weight:600;letter-spacing:.1em;color:var(--text-muted)}
-.social-bar-dark{background:var(--bg-dark) !important;border-bottom:1px solid rgba(255,255,255,.07) !important}
-.social-bar-dark .s-label{color:rgba(255,255,255,.35) !important}
-.social-bar-dark .logo-slot{border-color:rgba(255,255,255,.12) !important;color:rgba(255,255,255,.4) !important}
 .marquee-wrap{overflow:hidden}
 .marquee-track{display:flex;gap:80px;animation:marquee-anim 30s linear infinite;white-space:nowrap;align-items:center}
 @keyframes marquee-anim{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -153,7 +32,7 @@ img{display:block;max-width:100%}
 @keyframes cursor-blink{0%,100%{opacity:1}50%{opacity:0}}
 .pain-sub{font-size:var(--body-size);color:var(--text-muted);line-height:1.85}
 
-/* RESULT (Solution) */
+/* RESULT */
 .result{background:var(--bg-subtle);padding:var(--py) 0}
 .result-head{margin-bottom:var(--gap-lg);text-align:center}
 .result-head-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-xl);color:var(--text);letter-spacing:-.03em;line-height:1.2}
@@ -167,70 +46,12 @@ img{display:block;max-width:100%}
 .result-item{font-size:var(--body-size);color:var(--text-muted);line-height:1.65;display:flex;align-items:flex-start;gap:7px}
 .result-item::before{content:'•';color:var(--accent);flex-shrink:0;margin-top:2px}
 
-/* CTA-03 긴급 띠 */
-.cta03-strip{background:var(--bg-dark);padding:16px var(--px);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
-.cta03-text{font-size:14px;color:#fff;font-weight:500;font-family:var(--f-sans)}
-.cta03-text span{color:var(--accent);font-weight:700}
-.cta03-btn{background:var(--accent);color:#fff;font-family:var(--f-sans);font-weight:600;font-size:12px;letter-spacing:.06em;padding:10px 22px;border-radius:2px;transition:background .2s;white-space:nowrap;flex-shrink:0}
-.cta03-btn:hover{background:var(--accent-dark)}
-
-/* PROCESS (F-06) */
-.process{background:var(--bg);padding:var(--py) 0}
-.process-head{text-align:center;margin-bottom:var(--gap-lg)}
-.process-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
-.process-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
-.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;max-width:900px;margin:0 auto}
-.process-steps::before{content:'';position:absolute;top:28px;left:12%;right:12%;height:1px;background:var(--border)}
-.process-step{text-align:center;position:relative;z-index:1;padding:0 16px}
-.process-num{width:56px;height:56px;border:2px solid var(--accent);border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:var(--f-en);font-size:15px;font-weight:700;color:var(--accent)}
-.process-step h3{font-family:var(--f-head);font-size:15px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
-.process-step p{font-size:13px;color:var(--text-muted);line-height:1.7}
-
-/* PROOF 숫자 (F-07) */
-.proof-num{background:var(--bg-dark);padding:var(--py) 0}
-.proof-num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);max-width:calc(var(--max) + var(--px)*2);margin:0 auto;padding:0 var(--px)}
-/* override for full-bleed dividers */
-.proof-num-inner{background:rgba(255,255,255,.06);padding:0}
-.pn-item{background:var(--bg-dark);padding:40px 32px;text-align:center}
-.pn-num{font-family:var(--f-en);font-size:clamp(40px,6vw,72px);font-weight:800;color:var(--accent);line-height:1;display:block;margin-bottom:8px}
-.pn-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-
-/* PROOF 후기 (SP-01) */
-.proof-review{background:var(--bg);padding:var(--py) 0}
-.proof-review-head{margin-bottom:var(--gap-lg)}
-.proof-review-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
-.proof-review-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap-sm)}
-.review-card{border:1px solid var(--border);border-radius:8px;padding:28px;background:var(--bg);transition:box-shadow .25s}
-.review-card:hover{box-shadow:0 6px 28px rgba(0,0,0,.07)}
-.review-stars{font-size:13px;color:var(--accent);letter-spacing:2px;margin-bottom:14px}
-.review-text{font-size:var(--body-size);line-height:1.85;color:var(--text);margin-bottom:20px}
-.review-author{display:flex;align-items:center;gap:10px}
-.review-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg-subtle);flex-shrink:0;overflow:hidden}
-.review-name{font-size:13px;font-weight:600}
-.review-role{font-size:11px;color:var(--text-muted)}
-
-/* FAQ */
-.faq{background:var(--bg-subtle);padding:var(--py) 0}
-.faq-head{margin-bottom:var(--gap-lg)}
-.faq-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
-.faq-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
-.faq-inner{max-width:760px}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;font-family:var(--f-sans);font-size:var(--body-size);font-weight:600;color:var(--text);background:none;border:none;cursor:pointer;text-align:left}
-.faq-icon{font-size:22px;color:var(--text-muted);transition:transform .3s;flex-shrink:0;line-height:1}
-.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--accent)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
-.faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
-.faq-a p{font-size:14px;color:var(--text-muted);line-height:1.85}
-
 /* TAGLINE */
 .tagline{background:var(--bg);padding:var(--py) 0;overflow:hidden}
 .tagline-inner{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center;border-top:1px solid #E0DDD9;border-bottom:1px solid #E0DDD9;padding:var(--py) var(--px);max-width:calc(var(--max) + var(--px)*2);margin:0 auto}
-.tagline-row{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,28px);line-height:1;padding:4px 0}
+.tagline-row{display:flex;align-items:center;justify-content:center;gap:clamp(12px,2vw,28px);line-height:1;padding:4px 0;opacity:.06;transition:opacity .7s cubic-bezier(.16,1,.3,1)}
 .tl-word{font-family:var(--f-head);font-size:clamp(36px,6vw,88px);font-weight:700;letter-spacing:-.04em;white-space:nowrap;color:var(--text)}
 .tl-word.muted{color:rgba(17,17,17,.2)}
-.tagline-row{opacity:0.06;transition:opacity .7s cubic-bezier(.16,1,.3,1)}
 .tl-img{width:clamp(60px,7vw,110px);height:clamp(40px,4.5vw,72px);border-radius:12px;overflow:hidden;flex-shrink:0;background:#C8C4BF;display:inline-flex;align-items:center;justify-content:center;font-size:9px;color:#999;letter-spacing:.05em}
 .tl-img.rot-l{transform:rotate(-8deg)}
 .tl-img.rot-r{transform:rotate(7deg)}
@@ -263,10 +84,55 @@ img{display:block;max-width:100%}
 .pf-view{font-size:12px;color:rgba(255,255,255,.9);margin-top:7px;opacity:0;transform:translateY(5px);transition:opacity .3s,transform .3s cubic-bezier(.16,1,.3,1)}
 .pf-card:hover .pf-view{opacity:1;transform:translateY(0)}
 
-/* DARK WRAP */
-.dark-wrap{background:var(--bg-dark)}
+/* PROCESS */
+.process{background:var(--bg);padding:var(--py) 0}
+.process-head{text-align:center;margin-bottom:var(--gap-lg)}
+.process-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
+.process-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;max-width:900px;margin:0 auto}
+.process-steps::before{content:'';position:absolute;top:28px;left:12%;right:12%;height:1px;background:var(--border)}
+.process-step{text-align:center;position:relative;z-index:1;padding:0 16px}
+.process-num{width:56px;height:56px;border:2px solid var(--accent);border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:var(--f-en);font-size:15px;font-weight:700;color:var(--accent)}
+.process-step h3{font-family:var(--f-head);font-size:15px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
+.process-step p{font-size:13px;color:var(--text-muted);line-height:1.7}
 
-/* CTA 메인 (CTA-01 변형) */
+/* PROOF 숫자 */
+.proof-num{background:var(--bg-dark);padding:var(--py) 0}
+.proof-num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);max-width:calc(var(--max) + var(--px)*2);margin:0 auto;padding:0 var(--px)}
+.pn-item{background:var(--bg-dark);padding:40px 32px;text-align:center}
+.pn-num{font-family:var(--f-en);font-size:clamp(40px,6vw,72px);font-weight:800;color:var(--accent);line-height:1;display:block;margin-bottom:8px}
+.pn-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* PROOF 후기 */
+.proof-review{background:var(--bg);padding:var(--py) 0}
+.proof-review-head{margin-bottom:var(--gap-lg)}
+.proof-review-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
+.proof-review-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap-sm)}
+.review-card{border:1px solid var(--border);border-radius:8px;padding:28px;background:var(--bg);transition:box-shadow .25s}
+.review-card:hover{box-shadow:0 6px 28px rgba(0,0,0,.07)}
+.review-stars{font-size:13px;color:var(--accent);letter-spacing:2px;margin-bottom:14px}
+.review-text{font-size:var(--body-size);line-height:1.85;color:var(--text);margin-bottom:20px}
+.review-author{display:flex;align-items:center;gap:10px}
+.review-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg-subtle);flex-shrink:0;overflow:hidden}
+.review-name{font-size:13px;font-weight:600}
+.review-role{font-size:11px;color:var(--text-muted)}
+
+/* FAQ */
+.faq{background:var(--bg-subtle);padding:var(--py) 0}
+.faq-head{margin-bottom:var(--gap-lg)}
+.faq-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
+.faq-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
+.faq-inner{max-width:760px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;font-family:var(--f-sans);font-size:var(--body-size);font-weight:600;color:var(--text);background:none;border:none;cursor:pointer;text-align:left}
+.faq-icon{font-size:22px;color:var(--text-muted);transition:transform .3s;flex-shrink:0;line-height:1}
+.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--accent)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
+.faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
+.faq-a p{font-size:14px;color:var(--text-muted);line-height:1.85}
+
+/* CTA-MAIN */
 .cta-main{background:var(--accent);padding:clamp(72px,10vw,120px) var(--px);text-align:center}
 .cta-main-urgency{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);padding:7px 18px;border-radius:100px;font-size:12px;color:#fff;margin-bottom:28px;font-family:var(--f-sans);font-weight:500}
 .cta-main-dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 2s infinite;flex-shrink:0}
@@ -274,86 +140,6 @@ img{display:block;max-width:100%}
 .cta-main-title{font-family:var(--f-head);font-size:clamp(28px,4vw,52px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px;letter-spacing:-.03em}
 .cta-main-sub{font-size:var(--body-size);color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
 .cta-main-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-white{background:#fff;color:var(--accent);font-family:var(--f-sans);font-weight:700;font-size:14px;padding:16px 36px;border-radius:2px;transition:background .2s;border:none;cursor:pointer}
-.btn-white:hover{background:rgba(255,255,255,.9)}
-[data-magnetic]{transition:transform .3s cubic-bezier(.16,1,.3,1)}
-
-/* CTA BOX + FOOTER */
-.cta-box{background:var(--bg);border-radius:16px 16px 0 0;padding:clamp(48px,6vw,80px) var(--px)}
-.cta-title{font-family:var(--f-head);font-size:clamp(48px,9vw,120px);font-weight:700;color:var(--text);letter-spacing:-.04em;line-height:.95;margin-bottom:clamp(32px,5vw,56px)}
-.cta-body{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap-lg);align-items:start}
-.cta-desc{font-size:var(--body-size);color:var(--text-muted);line-height:1.7;margin-bottom:var(--gap-md);max-width:340px}
-.cta-btn{display:inline-flex;align-items:center;justify-content:space-between;gap:40px;background:var(--text);color:#fff;font-family:var(--f-sans);font-weight:600;font-size:14px;padding:16px 24px;border-radius:6px;transition:background .2s;width:100%;max-width:280px;margin-bottom:var(--gap-md)}
-.cta-btn:hover{background:#333}
-.cta-divider{border:none;border-top:1px solid var(--border);margin:16px 0}
-.cta-email{font-size:clamp(18px,2.5vw,28px);font-weight:600;color:var(--text);display:block;margin-bottom:6px}
-.cta-phone{font-size:14px;color:var(--text-muted);display:block}
-.cta-socials{display:flex;gap:20px;margin-top:16px}
-.cta-socials a{font-size:13px;color:var(--text-muted);transition:color .2s}
-.cta-socials a:hover{color:var(--text)}
-.cta-right{border-radius:12px;overflow:hidden;aspect-ratio:4/3;background:#C8C4BF;display:flex;align-items:flex-end;padding:20px;font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.05em}
-
-@media(max-width:1024px){
-  .result-grid{grid-template-columns:repeat(2,1fr)}
-  .proof-num-grid{grid-template-columns:repeat(2,1fr)}
-  .cta-body{grid-template-columns:1fr}
-  .pf-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:768px){
-  /* NAV */
-  .nav-links{display:none}
-  .hamburger{display:flex}
-
-  /* HERO */
-  .hero{min-height:100svh;height:100svh}
-  .hero-overlay{background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.5) 100%)}
-  .hero-inner{justify-content:flex-end;padding-bottom:clamp(60px,12vw,100px)}
-  .hero-ctas{flex-direction:column}
-  .hero-ctas .btn{width:100%;justify-content:center}
-
-  /* SECTIONS */
-  .result-grid{grid-template-columns:1fr}
-  .pf-grid{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:repeat(2,1fr)}
-  .process-steps::before{display:none}
-  .proof-num-grid{grid-template-columns:repeat(2,1fr)}
-  .review-grid{grid-template-columns:1fr}
-  .footer-top{grid-template-columns:1fr}
-  .footer-mid{grid-template-columns:1fr 1fr}
-
-  /* TAGLINE — 이미지 숨기고 단어만 */
-  .tl-img{display:none}
-  .tagline-row{gap:clamp(8px,3vw,20px)}
-
-  /* FLOATING FORM → 모바일 숨김, 모바일 버튼 표시 */
-  .floating-form{display:none}
-  .m-call-btn{display:flex}
-  .m-form-sheet{display:block}
-
-  /* PORTFOLIO CARD 높이 */
-  .pf-card{aspect-ratio:3/2}
-
-  /* PROOF 숫자 */
-  .pn-item{padding:28px 20px}
-
-  /* FOOTER GRID */
-  .footer2-grid{grid-template-columns:1fr 1fr;gap:32px}
-
-  /* CTA */
-  .cta03-strip{flex-direction:column;align-items:flex-start;gap:12px}
-  .cta-main-btns{flex-direction:column;align-items:center}
-  .btn-white,.btn-outline{width:100%;max-width:320px;justify-content:center}
-
-  /* PAIN */
-  .pain-head{font-size:clamp(22px,6vw,36px)}
-}
-@media(max-width:480px){
-  .process-steps{grid-template-columns:1fr}
-  .proof-num-grid{grid-template-columns:1fr 1fr}
-  .footer2-grid{grid-template-columns:1fr}
-  .ft-cta-links{flex-direction:column;gap:20px}
-  .tl-word{font-size:clamp(28px,9vw,56px)}
-}
 
 /* FOOTER CTA */
 .ft-cta{background:#111;padding:clamp(80px,12vw,160px) var(--px);text-align:center}
@@ -361,34 +147,38 @@ img{display:block;max-width:100%}
 .ft-cta-title{font-family:var(--f-en);font-size:clamp(28px,4.5vw,56px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px}
 .ft-cta-title span{color:var(--accent)}
 .ft-cta-sub{font-size:var(--body-size);color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:32px}
-.ft-cta-sub span{color:var(--accent)}
 .ft-cta-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:48px}
-.ft-tag{font-family:var(--f-sans);font-size:12px;font-weight:500;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:7px 16px;letter-spacing:.04em;transition:border-color .2s,color .2s}
-.ft-tag:hover{border-color:var(--accent);color:var(--accent)}
-.ft-cta-links{display:flex;align-items:center;justify-content:center;gap:clamp(40px,6vw,80px);flex-wrap:wrap}
-.ft-link{font-family:var(--f-en);font-size:clamp(14px,1.4vw,18px);font-weight:700;color:#fff;letter-spacing:.04em;padding-bottom:4px;position:relative;transition:color .2s}.ft-link::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:rgba(255,255,255,.25);border-radius:1px}.ft-link::before{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--accent);border-radius:1px;transition:width .35s cubic-bezier(.16,1,.3,1)}
-.ft-link:hover{color:var(--accent)}.ft-link:hover::before{width:100%}
 
-/* FOOTER2 */
-.footer2{background:#0A0A0A;border-top:1px solid rgba(255,255,255,.07)}
-.footer2-grid{display:grid;grid-template-columns:180px 1fr 1fr 1fr;gap:clamp(24px,4vw,60px);align-items:start;padding:clamp(48px,6vw,72px) 0}
-.footer2-brand{}
-.footer2-logo{font-family:var(--f-en);font-size:clamp(22px,2.5vw,32px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1}
-.footer2-logo span{color:var(--accent)}
-.footer2-label{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px}
-.footer2-val{font-size:clamp(13px,1.2vw,15px);color:rgba(255,255,255,.65);line-height:1.7}
-.footer2-val-lg{font-size:clamp(16px,1.8vw,22px);font-weight:600;color:#fff;letter-spacing:-.01em}
-.footer2-socials{display:flex;flex-direction:column;gap:8px}
-.footer2-soc{font-size:14px;color:rgba(255,255,255,.5);transition:color .2s;font-weight:500}
-.footer2-soc:hover{color:#fff}
-.footer2-bar{background:var(--accent);padding:14px 0;text-align:center;font-family:var(--f-sans);font-size:12px;color:#fff;font-weight:500;letter-spacing:.04em}
-
+/* RESPONSIVE HOME-SPECIFIC */
+@media(max-width:1024px){
+  .result-grid{grid-template-columns:repeat(2,1fr)}
+  .proof-num-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:768px){
-  .footer2-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .hero{min-height:100svh;height:100svh}
+  .hero-overlay{background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.5) 100%)}
+  .hero-inner{justify-content:flex-end;padding-bottom:clamp(60px,12vw,100px)}
+  .hero-ctas{flex-direction:column}
+  .hero-ctas .btn{width:100%;justify-content:center}
+  .result-grid{grid-template-columns:1fr}
+  .pf-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:repeat(2,1fr)}
+  .process-steps::before{display:none}
+  .proof-num-grid{grid-template-columns:repeat(2,1fr)}
+  .review-grid{grid-template-columns:1fr}
+  .tl-img{display:none}
+  .tagline-row{gap:clamp(8px,3vw,20px)}
+  .pf-card{aspect-ratio:3/2}
+  .pn-item{padding:28px 20px}
+  .cta-main-btns{flex-direction:column;align-items:center}
+  .btn-white,.btn-outline{width:100%;max-width:320px;justify-content:center}
+  .pain-head{font-size:clamp(22px,6vw,36px)}
 }
 @media(max-width:480px){
-  .footer2-grid{grid-template-columns:1fr}
-  .ft-cta-links{flex-direction:column;gap:20px}
+  .process-steps{grid-template-columns:1fr}
+  .proof-num-grid{grid-template-columns:1fr 1fr}
+  .tl-word{font-size:clamp(28px,9vw,56px)}
+  .pf-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -397,9 +187,9 @@ img{display:block;max-width:100%}
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <div class="nav-logo"><a href="rasa_redesign.html" style="color:inherit">RAS<span>A</span></a></div>
+    <div class="nav-logo"><a href="rasa_redesign.html">RAS<span>A</span></a></div>
     <div class="nav-links">
-      <a href="#">Home</a>
+      <a href="rasa_redesign.html">Home</a>
       <a href="rasa_service.html">Service</a>
       <a href="rasa_campaign.html">Campaign</a>
     </div>
@@ -436,8 +226,6 @@ img{display:block;max-width:100%}
 <button class="m-call-btn" id="mCallBtn" aria-label="상담 문의">
   <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
 </button>
-
-<!-- MOBILE FORM SHEET -->
 <div class="m-sheet-overlay" id="mSheetOverlay"></div>
 <div class="m-form-sheet" id="mFormSheet">
   <div class="m-sheet-handle"></div>
@@ -451,7 +239,7 @@ img{display:block;max-width:100%}
   <button class="float-submit">문의 등록</button>
 </div>
 
-<!-- HERO (H-03 풀블리드 / IX-06 패럴랙스 + IX-03 텍스트 라인) -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-bg ph">[이미지 영역 — 히어로 배경]</div>
   <div class="hero-overlay"></div>
@@ -469,7 +257,7 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<!-- PAIN (IX-01 리빌) -->
+<!-- PAIN -->
 <section class="pain" id="pain">
   <div class="wrap">
     <h2 class="pain-head" data-reveal>
@@ -479,7 +267,7 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<!-- RESULT / SOLUTION (F-07 변형 카드 / IX-02 stagger) -->
+<!-- RESULT -->
 <section class="result" id="result">
   <div class="wrap">
     <div class="result-head" data-reveal>
@@ -537,21 +325,27 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
+<!-- CTA-03 STRIP -->
+<div class="cta03-strip">
+  <div class="cta03-text">지금 <span>무료 상담</span>을 신청하시면 담당자가 당일 연락드립니다.</div>
+  <a href="#cta" class="cta03-btn">무료 상담 신청 →</a>
+</div>
+
 <!-- TAGLINE -->
 <section class="tagline">
   <div class="tagline-inner">
-    <div class="tagline-row" data-reveal>
+    <div class="tagline-row">
       <span class="tl-word">빠른 실행</span>
       <div class="tl-img rot-l ph">[이미지]</div>
       <span class="tl-word muted">성과 중심</span>
     </div>
-    <div class="tagline-row" data-reveal>
+    <div class="tagline-row">
       <div class="tl-img rot-r ph">[이미지]</div>
       <span class="tl-word">브랜딩</span>
       <span class="tl-word muted">퍼포먼스</span>
       <div class="tl-img rot-m ph">[이미지]</div>
     </div>
-    <div class="tagline-row" data-reveal>
+    <div class="tagline-row">
       <span class="tl-word muted">결과가</span>
       <div class="tl-img rot-l ph">[이미지]</div>
       <span class="tl-word">전부입니다</span>
@@ -570,32 +364,32 @@ img{display:block;max-width:100%}
       <a href="rasa_campaign.html" class="pf-view-all">View all ↗</a>
     </div>
     <div class="pf-grid">
-      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=mnms'" style="cursor:pointer">
+      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=mnms'">
         <div class="pf-img ph" style="height:100%">[이미지 영역 — M&amp;M's × 피식대학]</div>
         <div class="pf-grad"></div>
         <div class="pf-body"><div class="pf-client">M&amp;M's × 피식대학</div><div class="pf-year">2023</div><div class="pf-view">View project →</div></div>
       </div>
-      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=glenlivet'" style="cursor:pointer">
+      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=glenlivet'">
         <div class="pf-img ph" style="height:100%">[이미지 영역 — 글렌리벳]</div>
         <div class="pf-grad"></div>
         <div class="pf-body"><div class="pf-client">페르노리카 코리아 (글렌리벳)</div><div class="pf-year">2024</div><div class="pf-view">View project →</div></div>
       </div>
-      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=sharkflex'" style="cursor:pointer">
+      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=sharkflex'">
         <div class="pf-img ph" style="height:100%">[이미지 영역 — 샤크플렉스타일]</div>
         <div class="pf-grad"></div>
         <div class="pf-body"><div class="pf-client">샤크플렉스타일</div><div class="pf-year">2024</div><div class="pf-view">View project →</div></div>
       </div>
-      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=hanshin'" style="cursor:pointer">
+      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=hanshin'">
         <div class="pf-img ph" style="height:100%">[이미지 영역 — 한신그룹]</div>
         <div class="pf-grad"></div>
         <div class="pf-body"><div class="pf-client">한신그룹</div><div class="pf-year">2023</div><div class="pf-view">View project →</div></div>
       </div>
-      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=yujin'" style="cursor:pointer">
+      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=yujin'">
         <div class="pf-img ph" style="height:100%">[이미지 영역 — 유진그룹]</div>
         <div class="pf-grad"></div>
         <div class="pf-body"><div class="pf-client">유진그룹</div><div class="pf-year">2024</div><div class="pf-view">View project →</div></div>
       </div>
-      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=lkb'" style="cursor:pointer">
+      <div class="pf-card" data-slide onclick="location.href='rasa_campaign_detail.html?id=lkb'">
         <div class="pf-img ph" style="height:100%">[이미지 영역 — LKB]</div>
         <div class="pf-grad"></div>
         <div class="pf-body"><div class="pf-client">LKB</div><div class="pf-year">2023</div><div class="pf-view">View project →</div></div>
@@ -621,7 +415,139 @@ img{display:block;max-width:100%}
   </div>
 </section>
 
-<!-- FOOTER CTA (레퍼런스: avocadogiant.com) -->
+<!-- PROCESS -->
+<section class="process">
+  <div class="wrap">
+    <div class="process-head" data-reveal>
+      <span class="process-eyebrow">How We Work</span>
+      <h2 class="process-title">RASA의 업무 방식</h2>
+    </div>
+    <div class="process-steps">
+      <div class="process-step" data-slide>
+        <div class="process-num">01</div>
+        <h3>브리핑</h3>
+        <p>목표·예산·타겟을 함께 정리합니다</p>
+      </div>
+      <div class="process-step" data-slide>
+        <div class="process-num">02</div>
+        <h3>전략 설계</h3>
+        <p>최적 채널과 예산 배분을 제안합니다</p>
+      </div>
+      <div class="process-step" data-slide>
+        <div class="process-num">03</div>
+        <h3>빠른 실행</h3>
+        <p>확정 후 48시간 내 캠페인을 시작합니다</p>
+      </div>
+      <div class="process-step" data-slide>
+        <div class="process-num">04</div>
+        <h3>성과 보고</h3>
+        <p>주 단위 리포트로 투명하게 공유합니다</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF 숫자 -->
+<section class="proof-num">
+  <div class="proof-num-grid">
+    <div class="pn-item" data-slide>
+      <span class="pn-num">200+</span>
+      <span class="pn-label">Brands</span>
+    </div>
+    <div class="pn-item" data-slide>
+      <span class="pn-num">350%</span>
+      <span class="pn-label">Avg ROAS</span>
+    </div>
+    <div class="pn-item" data-slide>
+      <span class="pn-num">48h</span>
+      <span class="pn-label">Launch Speed</span>
+    </div>
+    <div class="pn-item" data-slide>
+      <span class="pn-num">100+</span>
+      <span class="pn-label">Media Partners</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF 후기 -->
+<section class="proof-review">
+  <div class="wrap">
+    <div class="proof-review-head" data-reveal>
+      <span class="proof-review-eyebrow">Client Review</span>
+      <h2 class="proof-review-title">실제 클라이언트의 말</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card" data-slide>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">담당자가 자주 바뀌지 않고, 연락도 항상 당일에 옵니다. 이런 대행사는 처음이에요.</p>
+        <div class="review-author">
+          <div class="review-avatar ph"></div>
+          <div><div class="review-name">김○○ 대표</div><div class="review-role">뷰티 브랜드</div></div>
+        </div>
+      </div>
+      <div class="review-card" data-slide>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">집행 2주 만에 ROAS가 300%를 넘었습니다. 숫자로 보여주는 팀이라 믿음이 갑니다.</p>
+        <div class="review-author">
+          <div class="review-avatar ph"></div>
+          <div><div class="review-name">이○○ 마케터</div><div class="review-role">이커머스</div></div>
+        </div>
+      </div>
+      <div class="review-card" data-slide>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">언론홍보부터 인플루언서까지 원스톱으로 해결돼서 관리 부담이 크게 줄었습니다.</p>
+        <div class="review-author">
+          <div class="review-avatar ph"></div>
+          <div><div class="review-name">박○○ CMO</div><div class="review-role">스타트업</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-head" data-reveal>
+      <span class="faq-eyebrow">FAQ</span>
+      <h2 class="faq-title">자주 묻는 질문</h2>
+    </div>
+    <div class="faq-inner">
+      <div class="faq-item">
+        <button class="faq-q">최소 계약 기간이 있나요? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>기본 1개월 단위로 계약하며 장기 계약 시 할인 혜택을 드립니다.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">예산이 얼마부터 가능한가요? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>서비스별로 다르지만 월 200만원 이상의 예산부터 집행 가능합니다. 무료 상담에서 예산에 맞는 플랜을 제안해드립니다.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">계약 후 얼마나 빨리 시작되나요? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>계약 완료 후 48시간 이내 캠페인을 시작합니다. 빠른 실행이 RASA의 핵심 강점입니다.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">성과 보고는 어떻게 이루어지나요? <span class="faq-icon">+</span></button>
+        <div class="faq-a"><p>주 1회 정기 보고서와 실시간 대시보드를 제공합니다. 언제든 담당자에게 문의하시면 당일 답변드립니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA-MAIN -->
+<section class="cta-main" id="cta">
+  <div class="cta-main-urgency">
+    <div class="cta-main-dot"></div>
+    지금 3팀 상담 가능
+  </div>
+  <h2 class="cta-main-title">지금 시작하면<br>경쟁사보다 빠릅니다</h2>
+  <p class="cta-main-sub">무료 상담 후 마음에 들지 않으면 진행하지 않아도 됩니다.<br>부담 없이 연락주세요.</p>
+  <div class="cta-main-btns">
+    <button class="btn btn-white btn-lg" onclick="document.getElementById('floatingForm')?.classList.remove('collapsed')">무료 상담 신청</button>
+    <a href="rasa_service.html" class="btn btn-outline btn-lg">서비스 보기</a>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
 <section class="ft-cta">
   <div class="ft-cta-inner">
     <h2 class="ft-cta-title" data-reveal>Connect to <span>RASA</span> ?</h2>
@@ -635,7 +561,7 @@ img{display:block;max-width:100%}
     </div>
     <div class="ft-cta-links" data-reveal>
       <a href="#" class="ft-link">Contact Us →</a>
-      <a href="#" class="ft-link">Service Deck ↗</a>
+      <a href="rasa_service.html" class="ft-link">Service Deck ↗</a>
     </div>
   </div>
 </section>
@@ -672,107 +598,44 @@ img{display:block;max-width:100%}
   </div>
 </footer>
 
+<script src="common.js"></script>
 <script>
-// 데스크탑 플로팅폼 토글
-const floatingForm = document.getElementById('floatingForm');
-const floatToggle = document.getElementById('floatToggle');
-if(floatToggle) {
-  floatToggle.addEventListener('click', () => {
-    floatingForm.classList.toggle('collapsed');
-  });
-}
-
-// 모바일 폼 시트
-const mCallBtn = document.getElementById('mCallBtn');
-const mFormSheet = document.getElementById('mFormSheet');
-const mSheetOverlay = document.getElementById('mSheetOverlay');
-const mSheetClose = document.getElementById('mSheetClose');
-function openSheet() { mFormSheet.classList.add('open'); mSheetOverlay.classList.add('open'); document.body.style.overflow='hidden'; }
-function closeSheet() { mFormSheet.classList.remove('open'); mSheetOverlay.classList.remove('open'); document.body.style.overflow=''; }
-if(mCallBtn) mCallBtn.addEventListener('click', openSheet);
-if(mSheetClose) mSheetClose.addEventListener('click', closeSheet);
-if(mSheetOverlay) mSheetOverlay.addEventListener('click', closeSheet);
-
-// 햄버거 메뉴
-const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobileMenu');
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('open');
-  mobileMenu.classList.toggle('open');
-});
-mobileMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    mobileMenu.classList.remove('open');
-  });
-});
-
-// 태그라인 — 중앙 아래면 흐림, 중앙 도달 후 선명 유지
+// 태그라인 스크롤 opacity
 (function(){
   const rows = document.querySelectorAll('.tagline-row');
-  if(!rows.length) return;
-
+  if (!rows.length) return;
   function update() {
     const vCenter = window.innerHeight / 2;
     const fadeRange = window.innerHeight * 0.45;
     rows.forEach(row => {
       const rect = row.getBoundingClientRect();
       const rowCenter = rect.top + rect.height / 2;
-      if(rowCenter <= vCenter) {
-        row.style.opacity = 1;
-      } else {
-        const dist = rowCenter - vCenter;
-        row.style.opacity = Math.max(0.06, 1 - dist / fadeRange);
-      }
+      row.style.opacity = rowCenter <= vCenter ? 1 : Math.max(0.06, 1 - (rowCenter - vCenter) / fadeRange);
     });
   }
-
   window.addEventListener('scroll', update, { passive: true });
   update();
 })();
 
-// 서비스 아코디언
-document.querySelectorAll('.acc-trigger').forEach(trigger => {
-  trigger.addEventListener('click', () => {
-    const item = trigger.closest('.acc-item');
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
-    if (!isOpen) item.classList.add('open');
-  });
-});
-
-// IX-01 + IX-02 + IX-03 통합 IntersectionObserver
-const io = new IntersectionObserver(
-  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); }),
-  { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
-);
-document.querySelectorAll('[data-reveal],[data-slide]').forEach(el => io.observe(el));
-
-// IX-03 히어로 텍스트 라인 — 페이지 로드 직후 발동
-setTimeout(() => {
-  document.querySelectorAll('.text-reveal-line').forEach(el => el.classList.add('revealed'));
-  document.querySelectorAll('.hero [data-reveal]').forEach(el => el.classList.add('revealed'));
-}, 100);
-
-
+// 타이핑 애니메이션
 (function(){
   const el = document.getElementById('pain-typing');
-  if(!el) return;
+  if (!el) return;
   const texts = ['연락이 느리다?','담당자가 바뀐다?','결과가 없다?','말만 잘한다?'];
-  let ti=0,ci=0,deleting=false;
+  let ti=0, ci=0, deleting=false;
   function tick(){
     const cur = texts[ti];
-    if(!deleting){
-      el.textContent = cur.slice(0,ci+1); ci++;
-      if(ci===cur.length){ deleting=true; setTimeout(tick,1800); }
-      else setTimeout(tick,80);
+    if (!deleting){
+      el.textContent = cur.slice(0, ci+1); ci++;
+      if (ci === cur.length){ deleting=true; setTimeout(tick, 1800); }
+      else setTimeout(tick, 80);
     } else {
-      el.textContent = cur.slice(0,ci-1); ci--;
-      if(ci===0){ deleting=false; ti=(ti+1)%texts.length; setTimeout(tick,300); }
-      else setTimeout(tick,45);
+      el.textContent = cur.slice(0, ci-1); ci--;
+      if (ci === 0){ deleting=false; ti=(ti+1)%texts.length; setTimeout(tick, 300); }
+      else setTimeout(tick, 45);
     }
   }
-  setTimeout(tick,1000);
+  setTimeout(tick, 1000);
 })();
 </script>
 </body>
