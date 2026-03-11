@@ -93,8 +93,13 @@ img{display:block;max-width:100%}
 .mobile-menu a:hover{color:#fff}
 .mobile-menu .m-cta{background:var(--accent);color:#fff;padding:12px 20px;border-radius:2px;text-align:center;margin-top:8px}
 
-/* FLOATING FORM */
-.floating-form{position:fixed;top:50%;right:0;transform:translateY(-50%);width:260px;background:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;padding:26px 22px;z-index:99;box-shadow:-4px 0 24px rgba(0,0,0,.07)}
+/* FLOATING FORM — 데스크탑 */
+.floating-form{position:fixed;top:50%;right:0;transform:translateY(-50%) translateX(0);width:260px;background:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;padding:26px 22px;z-index:99;box-shadow:-4px 0 24px rgba(0,0,0,.07);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.floating-form.collapsed{transform:translateY(-50%) translateX(260px)}
+.float-toggle{position:absolute;left:-36px;top:50%;transform:translateY(-50%);width:36px;height:52px;background:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:-3px 0 12px rgba(0,0,0,.06);font-size:11px;color:var(--text-muted);transition:background .2s}
+.float-toggle:hover{background:var(--bg-subtle)}
+.float-toggle svg{width:14px;height:14px;transition:transform .4s}
+.floating-form.collapsed .float-toggle svg{transform:rotate(180deg)}
 .float-title{font-family:var(--f-head);font-size:14px;font-weight:700;margin-bottom:4px}
 .float-sub{font-size:11px;color:var(--text-muted);margin-bottom:16px;line-height:1.6}
 .float-field{margin-bottom:10px}
@@ -105,6 +110,19 @@ img{display:block;max-width:100%}
 .float-agree input{width:auto;margin-top:2px;flex-shrink:0}
 .float-submit{width:100%;background:var(--accent);color:#fff;font-family:var(--f-sans);font-weight:600;font-size:13px;padding:11px;border-radius:2px;border:none;cursor:pointer;transition:background .2s}
 .float-submit:hover{background:var(--accent-dark)}
+
+/* MOBILE CTA — 전화 아이콘 고정 버튼 */
+.m-call-btn{display:none;position:fixed;bottom:24px;right:20px;z-index:200;width:56px;height:56px;background:var(--accent);border-radius:50%;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(255,92,26,.4);cursor:pointer;border:none;transition:transform .2s,background .2s}
+.m-call-btn:hover{transform:scale(1.08);background:var(--accent-dark)}
+.m-call-btn svg{width:24px;height:24px;fill:#fff}
+.m-form-sheet{display:none;position:fixed;bottom:0;left:0;right:0;z-index:201;background:#fff;border-radius:20px 20px 0 0;padding:28px 24px 40px;box-shadow:0 -8px 40px rgba(0,0,0,.15);transform:translateY(100%);transition:transform .45s cubic-bezier(.16,1,.3,1)}
+.m-form-sheet.open{transform:translateY(0)}
+.m-sheet-handle{width:40px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 20px}
+.m-sheet-close{position:absolute;top:20px;right:20px;background:none;border:none;font-size:22px;color:var(--text-muted);cursor:pointer;line-height:1}
+.m-sheet-title{font-family:var(--f-head);font-size:16px;font-weight:700;margin-bottom:4px}
+.m-sheet-sub{font-size:12px;color:var(--text-muted);margin-bottom:20px;line-height:1.6}
+.m-sheet-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:200}
+.m-sheet-overlay.open{display:block}
 
 /* HERO */
 .hero{position:relative;width:100%;height:100vh;min-height:640px;overflow:hidden;padding-top:var(--nav-h)}
@@ -282,8 +300,18 @@ img{display:block;max-width:100%}
   .pf-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
+  /* NAV */
   .nav-links{display:none}
   .hamburger{display:flex}
+
+  /* HERO */
+  .hero{min-height:100svh;height:100svh}
+  .hero-overlay{background:linear-gradient(to bottom,rgba(0,0,0,.7) 0%,rgba(0,0,0,.5) 100%)}
+  .hero-inner{justify-content:flex-end;padding-bottom:clamp(60px,12vw,100px)}
+  .hero-ctas{flex-direction:column}
+  .hero-ctas .btn{width:100%;justify-content:center}
+
+  /* SECTIONS */
   .result-grid{grid-template-columns:1fr}
   .pf-grid{grid-template-columns:1fr}
   .process-steps{grid-template-columns:repeat(2,1fr)}
@@ -292,12 +320,39 @@ img{display:block;max-width:100%}
   .review-grid{grid-template-columns:1fr}
   .footer-top{grid-template-columns:1fr}
   .footer-mid{grid-template-columns:1fr 1fr}
+
+  /* TAGLINE — 이미지 숨기고 단어만 */
+  .tl-img{display:none}
+  .tagline-row{gap:clamp(8px,3vw,20px)}
+
+  /* FLOATING FORM → 모바일 숨김, 모바일 버튼 표시 */
   .floating-form{display:none}
+  .m-call-btn{display:flex}
+  .m-form-sheet{display:block}
+
+  /* PORTFOLIO CARD 높이 */
+  .pf-card{aspect-ratio:3/2}
+
+  /* PROOF 숫자 */
+  .pn-item{padding:28px 20px}
+
+  /* FOOTER GRID */
+  .footer2-grid{grid-template-columns:1fr 1fr;gap:32px}
+
+  /* CTA */
   .cta03-strip{flex-direction:column;align-items:flex-start;gap:12px}
+  .cta-main-btns{flex-direction:column;align-items:center}
+  .btn-white,.btn-outline{width:100%;max-width:320px;justify-content:center}
+
+  /* PAIN */
+  .pain-head{font-size:clamp(22px,6vw,36px)}
 }
 @media(max-width:480px){
   .process-steps{grid-template-columns:1fr}
   .proof-num-grid{grid-template-columns:1fr 1fr}
+  .footer2-grid{grid-template-columns:1fr}
+  .ft-cta-links{flex-direction:column;gap:20px}
+  .tl-word{font-size:clamp(28px,9vw,56px)}
 }
 
 /* FOOTER CTA */
@@ -363,10 +418,32 @@ img{display:block;max-width:100%}
   <a href="#cta" class="m-cta">무료 상담</a>
 </div>
 
-<!-- FLOATING FORM -->
-<div class="floating-form">
+<!-- FLOATING FORM — 데스크탑 -->
+<div class="floating-form" id="floatingForm">
+  <button class="float-toggle" id="floatToggle" aria-label="폼 열기/닫기">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
   <div class="float-title">광고 문의</div>
   <div class="float-sub">연락처를 남겨주세요.<br>당일 답변 드립니다.</div>
+  <div class="float-field"><label>이름</label><input type="text" placeholder="홍길동"></div>
+  <div class="float-field"><label>연락처</label><input type="tel" placeholder="010-0000-0000"></div>
+  <div class="float-field"><label>회사명</label><input type="text" placeholder="(주)회사명"></div>
+  <div class="float-agree"><input type="checkbox"><span>개인정보 수집 및 이용에 동의합니다</span></div>
+  <button class="float-submit">문의 등록</button>
+</div>
+
+<!-- MOBILE CTA 버튼 -->
+<button class="m-call-btn" id="mCallBtn" aria-label="상담 문의">
+  <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+</button>
+
+<!-- MOBILE FORM SHEET -->
+<div class="m-sheet-overlay" id="mSheetOverlay"></div>
+<div class="m-form-sheet" id="mFormSheet">
+  <div class="m-sheet-handle"></div>
+  <button class="m-sheet-close" id="mSheetClose">×</button>
+  <div class="m-sheet-title">광고 문의</div>
+  <div class="m-sheet-sub">연락처를 남겨주세요. 당일 답변 드립니다.</div>
   <div class="float-field"><label>이름</label><input type="text" placeholder="홍길동"></div>
   <div class="float-field"><label>연락처</label><input type="tel" placeholder="010-0000-0000"></div>
   <div class="float-field"><label>회사명</label><input type="text" placeholder="(주)회사명"></div>
@@ -596,6 +673,26 @@ img{display:block;max-width:100%}
 </footer>
 
 <script>
+// 데스크탑 플로팅폼 토글
+const floatingForm = document.getElementById('floatingForm');
+const floatToggle = document.getElementById('floatToggle');
+if(floatToggle) {
+  floatToggle.addEventListener('click', () => {
+    floatingForm.classList.toggle('collapsed');
+  });
+}
+
+// 모바일 폼 시트
+const mCallBtn = document.getElementById('mCallBtn');
+const mFormSheet = document.getElementById('mFormSheet');
+const mSheetOverlay = document.getElementById('mSheetOverlay');
+const mSheetClose = document.getElementById('mSheetClose');
+function openSheet() { mFormSheet.classList.add('open'); mSheetOverlay.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeSheet() { mFormSheet.classList.remove('open'); mSheetOverlay.classList.remove('open'); document.body.style.overflow=''; }
+if(mCallBtn) mCallBtn.addEventListener('click', openSheet);
+if(mSheetClose) mSheetClose.addEventListener('click', closeSheet);
+if(mSheetOverlay) mSheetOverlay.addEventListener('click', closeSheet);
+
 // 햄버거 메뉴
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
