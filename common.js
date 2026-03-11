@@ -102,7 +102,16 @@
       const item = trigger.closest('.acc-item');
       const isOpen = item.classList.contains('open');
       document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
-      if (!isOpen) item.classList.add('open');
+      if (!isOpen) {
+        item.classList.add('open');
+        // 모바일: 열린 아이템이 상단에 잘리지 않도록 스크롤
+        if (window.innerWidth <= 768) {
+          setTimeout(() => {
+            const top = item.getBoundingClientRect().top + window.scrollY - 72;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }, 50);
+        }
+      }
     });
   });
 
