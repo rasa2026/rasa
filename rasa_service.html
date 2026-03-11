@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RASA — Service</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&display=swap');
+@font-face{font-family:'GMarketSans';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');font-weight:700;font-display:swap}
+@font-face{font-family:'GMarketSans';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');font-weight:500;font-display:swap}
+@font-face{font-family:'Suit';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:'Suit';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Medium.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:'Suit';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-SemiBold.woff2') format('woff2');font-weight:600;font-display:swap}
+@font-face{font-family:'Suit';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Bold.woff2') format('woff2');font-weight:700;font-display:swap}
+
+:root{
+  --accent:#FF5C1A;
+  --accent-dark:#CC4200;
+  --bg:#FFFFFF;
+  --bg-subtle:#F8F5F0;
+  --bg-dark:#0A0A0A;
+  --text:#111111;
+  --text-muted:#6B6B6B;
+  --border:rgba(0,0,0,0.08);
+  --f-head:'GMarketSans','Noto Sans KR',sans-serif;
+  --f-sans:'Suit','Noto Sans KR',sans-serif;
+  --f-en:'Montserrat',sans-serif;
+  --px:clamp(24px,5vw,80px);
+  --py:clamp(80px,10vw,140px);
+  --max:1440px;
+  --nav-h:64px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f-sans);color:var(--text);background:var(--bg);line-height:1.6;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit;border:none}
+img{display:block;max-width:100%}
+.wrap{width:100%;max-width:calc(var(--max) + var(--px)*2);margin:0 auto;padding:0 var(--px)}
+
+/* IX-01 */
+[data-reveal]{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+[data-reveal].revealed{opacity:1;transform:none}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);z-index:100;background:#0A0A0A}
+.nav-inner{max-width:calc(var(--max) + var(--px)*2);margin:0 auto;height:100%;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--px)}
+.nav-logo{font-family:var(--f-en);font-weight:800;color:#fff;font-size:18px;letter-spacing:.08em}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;align-items:center;justify-content:center;gap:40px}
+.nav-links a{font-family:var(--f-sans);font-size:12px;font-weight:600;color:rgba(255,255,255,.65);letter-spacing:.14em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-right{display:flex;justify-content:flex-end}
+.nav-cta{background:var(--accent);color:#fff;font-family:var(--f-sans);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:10px 22px;border-radius:2px;transition:background .2s;white-space:nowrap}
+.nav-cta:hover{background:var(--accent-dark)}
+
+/* PAGE HERO */
+.page-hero{background:var(--bg-dark);padding:clamp(100px,14vw,160px) 0 clamp(60px,8vw,100px);margin-top:var(--nav-h)}
+.page-hero-inner{max-width:calc(var(--max) + var(--px)*2);margin:0 auto;padding:0 var(--px)}
+.page-eyebrow{font-family:var(--f-en);font-size:11px;font-weight:700;letter-spacing:.2em;color:var(--accent);text-transform:uppercase;display:block;margin-bottom:20px}
+.page-title{font-family:var(--f-head);font-size:clamp(32px,5vw,64px);font-weight:700;color:#fff;line-height:1.1;letter-spacing:-.02em;margin-bottom:20px}
+.page-title em{color:var(--accent);font-style:normal}
+.page-desc{font-size:clamp(14px,1.2vw,17px);color:rgba(255,255,255,.5);line-height:1.8;max-width:480px}
+
+/* SERVICE 아코디언 */
+.svc{background:var(--bg);padding:clamp(60px,8vw,100px) 0 var(--py)}
+.acc-list{border-top:1px solid var(--border)}
+.acc-item{border-bottom:1px solid var(--border)}
+.acc-trigger{width:100%;display:grid;grid-template-columns:56px 1fr auto;align-items:center;gap:24px;padding:clamp(22px,2.5vw,32px) 0;cursor:pointer;background:none;border:none;text-align:left}
+.acc-trigger:hover .acc-name{color:var(--accent)}
+.acc-idx{font-family:var(--f-en);font-size:11px;font-weight:700;color:rgba(0,0,0,.18);letter-spacing:.2em}
+.acc-name{font-family:var(--f-head);font-size:clamp(18px,2vw,26px);font-weight:700;letter-spacing:-.02em;transition:color .2s;display:block}
+.acc-en{font-family:var(--f-en);font-size:10px;font-weight:700;color:var(--text-muted);letter-spacing:.14em;text-transform:uppercase;display:block;margin-top:5px}
+.acc-arrow{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .38s cubic-bezier(.16,1,.3,1),background .2s,border-color .2s}
+.acc-arrow svg{width:14px;height:14px;stroke:var(--text);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:stroke .2s}
+.acc-item.open .acc-arrow{transform:rotate(45deg);background:var(--accent);border-color:var(--accent)}
+.acc-item.open .acc-arrow svg{stroke:#fff}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.16,1,.3,1)}
+.acc-item.open .acc-body{max-height:700px}
+.acc-inner{display:grid;grid-template-columns:1fr 1fr 1.1fr;gap:clamp(24px,4vw,56px);padding:clamp(4px,1vw,8px) 0 clamp(36px,4vw,56px) 80px;align-items:start}
+.acc-desc{font-size:clamp(13px,1.1vw,15px);color:var(--text-muted);line-height:1.85;margin-bottom:28px}
+.acc-client-block{border-top:1px solid var(--border);padding-top:20px}
+.acc-client-count{display:flex;align-items:baseline;gap:8px;margin-bottom:10px}
+.acc-client-num{font-family:var(--f-en);font-size:clamp(32px,3.5vw,48px);font-weight:800;color:var(--accent);line-height:1}
+.acc-client-unit{font-family:var(--f-en);font-size:12px;font-weight:700;color:var(--text-muted);letter-spacing:.08em}
+.acc-client-names{font-size:12px;color:var(--text-muted);line-height:1.8}
+.acc-client-names strong{color:var(--text);font-weight:600}
+.acc-feat-list{list-style:none;display:flex;flex-direction:column;gap:12px}
+.acc-feat-list li{font-size:13px;color:var(--text);display:flex;align-items:flex-start;gap:10px;line-height:1.65}
+.acc-feat-list li::before{content:'';width:5px;height:5px;min-width:5px;border-radius:50%;background:var(--accent);margin-top:7px}
+.acc-img-wrap{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:4/3;background:#E8E4DF;display:flex;align-items:center;justify-content:center;font-size:11px;color:#aaa;font-family:var(--f-sans);font-weight:500;letter-spacing:.08em;text-align:center;padding:16px}
+.acc-img-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
+/* FOOTER CTA */
+.ft-cta{background:#111;padding:clamp(80px,12vw,160px) var(--px);text-align:center}
+.ft-cta-inner{max-width:760px;margin:0 auto}
+.ft-cta-title{font-family:var(--f-en);font-size:clamp(28px,4.5vw,56px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px}
+.ft-cta-title span{color:var(--accent)}
+.ft-cta-sub{font-size:16px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:32px}
+.ft-cta-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:48px}
+.ft-tag{font-size:12px;font-weight:500;color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.2);border-radius:100px;padding:7px 16px;letter-spacing:.04em;transition:border-color .2s,color .2s;font-family:var(--f-sans)}
+.ft-tag:hover{border-color:var(--accent);color:var(--accent)}
+.ft-cta-links{display:flex;align-items:center;justify-content:center;gap:clamp(40px,6vw,80px);flex-wrap:wrap}
+.ft-link{font-family:var(--f-en);font-size:clamp(14px,1.4vw,18px);font-weight:700;color:#fff;letter-spacing:.04em;padding-bottom:4px;position:relative;transition:color .2s}.ft-link::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:1.5px;background:rgba(255,255,255,.25);border-radius:1px}.ft-link::before{content:"";position:absolute;left:0;bottom:0;width:0;height:1.5px;background:var(--accent);border-radius:1px;transition:width .35s cubic-bezier(.16,1,.3,1)}
+.ft-link:hover{color:var(--accent)}.ft-link:hover::before{width:100%}
+
+/* FOOTER */
+.footer2{background:#0A0A0A;border-top:1px solid rgba(255,255,255,.07)}
+.footer2-grid{display:grid;grid-template-columns:180px 1fr 1fr 1fr;gap:clamp(24px,4vw,60px);align-items:start;padding:clamp(48px,6vw,72px) 0}
+.footer2-logo{font-family:var(--f-en);font-size:clamp(22px,2.5vw,32px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1}
+.footer2-logo span{color:var(--accent)}
+.footer2-label{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:10px}
+.footer2-val{font-size:clamp(13px,1.2vw,15px);color:rgba(255,255,255,.65);line-height:1.7}
+.footer2-val-lg{font-size:clamp(16px,1.8vw,22px);font-weight:600;color:#fff;letter-spacing:-.01em}
+.footer2-socials{display:flex;flex-direction:column;gap:8px}
+.footer2-soc{font-size:14px;color:rgba(255,255,255,.5);transition:color .2s;font-weight:500}
+.footer2-soc:hover{color:#fff}
+.footer2-bar{background:var(--accent);padding:14px 0;text-align:center;font-family:var(--f-sans);font-size:12px;color:#fff;font-weight:500;letter-spacing:.04em}
+
+@media(max-width:960px){
+  .acc-inner{grid-template-columns:1fr 1fr;padding-left:56px}
+  .acc-img-col{grid-column:span 2}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .footer2-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:640px){
+  .acc-inner{grid-template-columns:1fr;padding-left:0}
+  .acc-img-col{grid-column:span 1}
+  .acc-trigger{grid-template-columns:36px 1fr auto;gap:14px}
+}
+@media(max-width:480px){
+  .footer2-grid{grid-template-columns:1fr}
+  .ft-cta-links{flex-direction:column;gap:20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-logo"><a href="rasa_redesign.html">RAS<span>A</span></a></div>
+    <div class="nav-links">
+      <a href="rasa_redesign.html">Home</a>
+      <a href="rasa_service.html" class="active">Service</a>
+      <a href="#">Campaign</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="nav-cta">무료 상담</a>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <span class="page-eyebrow" data-reveal>Our Services</span>
+    <h1 class="page-title" data-reveal>RASA가 직접 운영하는<br><em>전문 마케팅 서비스</em></h1>
+    <p class="page-desc" data-reveal>중소기업부터 대기업 캠페인까지,<br>결과로 증명된 5가지 마케팅 서비스</p>
+  </div>
+</div>
+
+<!-- SERVICE 아코디언 -->
+<section class="svc">
+  <div class="wrap">
+    <div class="acc-list">
+
+      <!-- 01 언론홍보 -->
+      <div class="acc-item open">
+        <button class="acc-trigger">
+          <span class="acc-idx">01</span>
+          <span class="acc-label">
+            <span class="acc-name">언론홍보</span>
+            <span class="acc-en">Press Release</span>
+          </span>
+          <span class="acc-arrow"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <div class="acc-desc-col">
+              <p class="acc-desc">전직 기자 출신 라이터가 퀄리티 높은 기사를 직접 작성합니다. 당일 송출이 가능하며 100여 개 제휴 매체사를 통해 원하는 채널에 즉시 배포합니다.</p>
+              <div class="acc-client-block">
+                <div class="acc-client-count">
+                  <span class="acc-client-num">20<span style="font-size:.6em">+</span></span>
+                  <span class="acc-client-unit">Brands</span>
+                </div>
+                <div class="acc-client-names"><strong>한신그룹 · 프레드커피하우스</strong> 외 다수</div>
+              </div>
+            </div>
+            <div class="acc-feat-col">
+              <ul class="acc-feat-list">
+                <li>전직 기자 출신, 단시간 고퀄 기사 완성</li>
+                <li>당일 송출 가능</li>
+                <li>100개+ 제휴 매체사 즉시 배포</li>
+                <li>업종별 최적 매체 선별 제안</li>
+              </ul>
+            </div>
+            <div class="acc-img-col">
+              <div class="acc-img-wrap">[이미지 영역 — 언론홍보]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 바이럴 -->
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-idx">02</span>
+          <span class="acc-label">
+            <span class="acc-name">바이럴 마케팅</span>
+            <span class="acc-en">Viral Marketing</span>
+          </span>
+          <span class="acc-arrow"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <div class="acc-desc-col">
+              <p class="acc-desc">계정 히스토리를 철저하게 관리하여 신뢰도 높은 계정만 사용합니다. 유저 공감을 끌어내는 고퀄리티 원고와 대댓글·쪽지 발송을 무료로 지원합니다.</p>
+              <div class="acc-client-block">
+                <div class="acc-client-count">
+                  <span class="acc-client-num">30<span style="font-size:.6em">+</span></span>
+                  <span class="acc-client-unit">Brands</span>
+                </div>
+                <div class="acc-client-names"><strong>유모차 브랜드 · 샤크플렉스타일</strong> 외 다수</div>
+              </div>
+            </div>
+            <div class="acc-feat-col">
+              <ul class="acc-feat-list">
+                <li>cafe24 계정별 히스토리 철저 관리</li>
+                <li>오가닉 댓글 유도 고퀄리티 원고</li>
+                <li>대댓글 · 쪽지 발송 무료 지원</li>
+                <li>SNS 마이크로 인플루언서 300명 보유</li>
+              </ul>
+            </div>
+            <div class="acc-img-col">
+              <div class="acc-img-wrap">[이미지 영역 — 바이럴]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 인플루언서 -->
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-idx">03</span>
+          <span class="acc-label">
+            <span class="acc-name">인플루언서 마케팅</span>
+            <span class="acc-en">Influencer Marketing</span>
+          </span>
+          <span class="acc-arrow"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <div class="acc-desc-col">
+              <p class="acc-desc">타 플랫폼 대비 저렴한 비용으로 Mega·Macro 인플루언서 섭외가 가능합니다. 중소기업부터 대기업 캠페인까지 쌓은 노하우로 브랜드 fit에 맞는 크리에이터를 연결합니다.</p>
+              <div class="acc-client-block">
+                <div class="acc-client-count">
+                  <span class="acc-client-num">50<span style="font-size:.6em">+</span></span>
+                  <span class="acc-client-unit">Brands</span>
+                </div>
+                <div class="acc-client-names"><strong>M&amp;M's · 피식대학 · 글렌리벳</strong> 외 다수</div>
+              </div>
+            </div>
+            <div class="acc-feat-col">
+              <ul class="acc-feat-list">
+                <li>타 플랫폼 대비 저비용 Mega·Macro 섭외</li>
+                <li>업종별 마이크로 인플루언서 300명</li>
+                <li>Instagram · 네이버 블로그 · 체험단</li>
+                <li>광고주 ↔ 크리에이터 빠른 접점 조율</li>
+              </ul>
+            </div>
+            <div class="acc-img-col">
+              <div class="acc-img-wrap">[이미지 영역 — 인플루언서]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 04 DA·SEO -->
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-idx">04</span>
+          <span class="acc-label">
+            <span class="acc-name">DA · SEO 상위노출</span>
+            <span class="acc-en">Display Ads · SEO</span>
+          </span>
+          <span class="acc-arrow"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <div class="acc-desc-col">
+              <p class="acc-desc">네이버·카카오·구글 디스플레이 광고부터 네이버쇼핑·쿠팡·올리브영 상위노출까지 전 매체를 커버합니다. 빠른 소재 기획·디자인과 예산별 최적 매체를 제안합니다.</p>
+              <div class="acc-client-block">
+                <div class="acc-client-count">
+                  <span class="acc-client-num">40<span style="font-size:.6em">+</span></span>
+                  <span class="acc-client-unit">Brands</span>
+                </div>
+                <div class="acc-client-names"><strong>LKB · 유진그룹</strong> 외 다수</div>
+              </div>
+            </div>
+            <div class="acc-feat-col">
+              <ul class="acc-feat-list">
+                <li>NAVER · KAKAO · Google 전 매체 운영</li>
+                <li>네이버쇼핑 · 쿠팡 · 올리브영 상위노출</li>
+                <li>빠른 소재 기획 및 디자인 내부 제작</li>
+                <li>예산별 최적 매체 믹스 제안</li>
+              </ul>
+            </div>
+            <div class="acc-img-col">
+              <div class="acc-img-wrap">[이미지 영역 — DA·SEO]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 브랜드 블로그·평판 -->
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <span class="acc-idx">05</span>
+          <span class="acc-label">
+            <span class="acc-name">브랜드 블로그 · 평판 관리</span>
+            <span class="acc-en">Brand Blog · Reputation</span>
+          </span>
+          <span class="acc-arrow"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-inner">
+            <div class="acc-desc-col">
+              <p class="acc-desc">국내 최단시간 로직 분석으로 블로그 상위노출을 실현합니다. 악성 콘텐츠 삭제 및 밀어내기, 24시간 피드백 소통으로 이슈 발생 시 즉각 대응합니다.</p>
+              <div class="acc-client-block">
+                <div class="acc-client-count">
+                  <span class="acc-client-num">60<span style="font-size:.6em">+</span></span>
+                  <span class="acc-client-unit">Brands</span>
+                </div>
+                <div class="acc-client-names"><strong>식품 · 뷰티 · 의료 · 금융</strong> 다수 브랜드 운영 중</div>
+              </div>
+            </div>
+            <div class="acc-feat-col">
+              <ul class="acc-feat-list">
+                <li>국내 최단시간 로직 분석</li>
+                <li>상위노출 전문 블로그 육성</li>
+                <li>악성 콘텐츠 삭제 · 밀어내기</li>
+                <li>24시간 응대 · 이슈 즉각 조치</li>
+              </ul>
+            </div>
+            <div class="acc-img-col">
+              <div class="acc-img-wrap">[이미지 영역 — 브랜드 블로그]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="ft-cta">
+  <div class="ft-cta-inner">
+    <h2 class="ft-cta-title" data-reveal>Connect to <span>RASA</span> ?</h2>
+    <p class="ft-cta-sub" data-reveal>고민하는 동안 경쟁사는 움직입니다.</p>
+    <div class="ft-cta-tags" data-reveal>
+      <span class="ft-tag">#퍼포먼스마케팅</span>
+      <span class="ft-tag">#브랜딩</span>
+      <span class="ft-tag">#콘텐츠마케팅</span>
+      <span class="ft-tag">#인플루언서</span>
+      <span class="ft-tag">#바이럴</span>
+    </div>
+    <div class="ft-cta-links" data-reveal>
+      <a href="#" class="ft-link">Contact Us →</a>
+      <a href="#" class="ft-link">Service Deck ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer2">
+  <div class="wrap">
+    <div class="footer2-grid">
+      <div class="footer2-brand">
+        <div class="footer2-logo">RAS<span>A</span></div>
+      </div>
+      <div class="footer2-col">
+        <div class="footer2-label">ADDRESS</div>
+        <div class="footer2-val">[주소]</div>
+      </div>
+      <div class="footer2-col">
+        <div class="footer2-label">CONTACT</div>
+        <div class="footer2-val footer2-val-lg">[전화번호]</div>
+        <div class="footer2-label" style="margin-top:20px">EMAIL</div>
+        <div class="footer2-val">[이메일]</div>
+      </div>
+      <div class="footer2-col">
+        <div class="footer2-label">FOLLOW</div>
+        <div class="footer2-socials">
+          <a href="#" class="footer2-soc">Instagram</a>
+          <a href="#" class="footer2-soc">Blog</a>
+          <a href="#" class="footer2-soc">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer2-bar">
+    <span>© 2025 — All rights reserved by RASA.</span>
+  </div>
+</footer>
+
+<script>
+// 아코디언
+document.querySelectorAll('.acc-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const item = trigger.closest('.acc-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+// IX-01 스크롤 리빌
+const io = new IntersectionObserver(
+  entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); }),
+  { threshold: 0.12 }
+);
+document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+setTimeout(() => {
+  document.querySelectorAll('.page-hero [data-reveal]').forEach(el => el.classList.add('revealed'));
+}, 100);
+</script>
+</body>
+</html>
