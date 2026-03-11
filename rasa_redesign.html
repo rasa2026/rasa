@@ -60,11 +60,6 @@
 
 /* PORTFOLIO */
 .portfolio{background:var(--bg-subtle);padding:var(--py) 0}
-.pf-header-title{color:var(--text) !important}
-.pf-header-title span{color:var(--text-muted) !important}
-.pf-header-desc{color:var(--text-muted) !important}
-.pf-view-all{color:var(--text) !important;border-color:rgba(0,0,0,.2) !important}
-.pf-view-all:hover{background:var(--text) !important;color:#fff !important}
 .pf-wrap{width:100%;max-width:calc(var(--max) + var(--px)*2);margin:0 auto;padding:0 var(--px)}
 .pf-header{display:flex;align-items:center;justify-content:space-between;gap:var(--gap-md);margin-bottom:var(--gap-sm)}
 .pf-header-left{display:flex;align-items:center;gap:var(--gap-md)}
@@ -84,75 +79,10 @@
 .pf-view{font-size:12px;color:rgba(255,255,255,.9);margin-top:7px;opacity:0;transform:translateY(5px);transition:opacity .3s,transform .3s cubic-bezier(.16,1,.3,1)}
 .pf-card:hover .pf-view{opacity:1;transform:translateY(0)}
 
-/* PROCESS */
-.process{background:var(--bg);padding:var(--py) 0}
-.process-head{text-align:center;margin-bottom:var(--gap-lg)}
-.process-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
-.process-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
-.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;max-width:900px;margin:0 auto}
-.process-steps::before{content:'';position:absolute;top:28px;left:12%;right:12%;height:1px;background:var(--border)}
-.process-step{text-align:center;position:relative;z-index:1;padding:0 16px}
-.process-num{width:56px;height:56px;border:2px solid var(--accent);border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:var(--f-en);font-size:15px;font-weight:700;color:var(--accent)}
-.process-step h3{font-family:var(--f-head);font-size:15px;font-weight:700;margin-bottom:8px;letter-spacing:-.01em}
-.process-step p{font-size:13px;color:var(--text-muted);line-height:1.7}
-
-/* PROOF 숫자 */
-.proof-num{background:var(--bg-dark);padding:var(--py) 0}
-.proof-num-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.06);max-width:calc(var(--max) + var(--px)*2);margin:0 auto;padding:0 var(--px)}
-.pn-item{background:var(--bg-dark);padding:40px 32px;text-align:center}
-.pn-num{font-family:var(--f-en);font-size:clamp(40px,6vw,72px);font-weight:800;color:var(--accent);line-height:1;display:block;margin-bottom:8px}
-.pn-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.4)}
-
-/* PROOF 후기 */
-.proof-review{background:var(--bg);padding:var(--py) 0}
-.proof-review-head{margin-bottom:var(--gap-lg)}
-.proof-review-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
-.proof-review-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
-.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap-sm)}
-.review-card{border:1px solid var(--border);border-radius:8px;padding:28px;background:var(--bg);transition:box-shadow .25s}
-.review-card:hover{box-shadow:0 6px 28px rgba(0,0,0,.07)}
-.review-stars{font-size:13px;color:var(--accent);letter-spacing:2px;margin-bottom:14px}
-.review-text{font-size:var(--body-size);line-height:1.85;color:var(--text);margin-bottom:20px}
-.review-author{display:flex;align-items:center;gap:10px}
-.review-avatar{width:36px;height:36px;border-radius:50%;background:var(--bg-subtle);flex-shrink:0;overflow:hidden}
-.review-name{font-size:13px;font-weight:600}
-.review-role{font-size:11px;color:var(--text-muted)}
-
-/* FAQ */
-.faq{background:var(--bg-subtle);padding:var(--py) 0}
-.faq-head{margin-bottom:var(--gap-lg)}
-.faq-eyebrow{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);display:block;margin-bottom:12px}
-.faq-title{font-family:var(--f-head);font-weight:700;font-size:var(--title-lg);color:var(--text);letter-spacing:-.03em;line-height:1.2}
-.faq-inner{max-width:760px}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-q{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 0;font-family:var(--f-sans);font-size:var(--body-size);font-weight:600;color:var(--text);background:none;border:none;cursor:pointer;text-align:left}
-.faq-icon{font-size:22px;color:var(--text-muted);transition:transform .3s;flex-shrink:0;line-height:1}
-.faq-item.open .faq-icon{transform:rotate(45deg);color:var(--accent)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s}
-.faq-item.open .faq-a{max-height:400px;padding-bottom:20px}
-.faq-a p{font-size:14px;color:var(--text-muted);line-height:1.85}
-
-/* CTA-MAIN */
-.cta-main{background:var(--accent);padding:clamp(72px,10vw,120px) var(--px);text-align:center}
-.cta-main-urgency{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.18);padding:7px 18px;border-radius:100px;font-size:12px;color:#fff;margin-bottom:28px;font-family:var(--f-sans);font-weight:500}
-.cta-main-dot{width:6px;height:6px;border-radius:50%;background:#fff;animation:blink 2s infinite;flex-shrink:0}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
-.cta-main-title{font-family:var(--f-head);font-size:clamp(28px,4vw,52px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:16px;letter-spacing:-.03em}
-.cta-main-sub{font-size:var(--body-size);color:rgba(255,255,255,.8);line-height:1.7;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
-.cta-main-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-
-/* FOOTER CTA */
-.ft-cta{background:#111;padding:clamp(80px,12vw,160px) var(--px);text-align:center}
-.ft-cta-inner{max-width:760px;margin:0 auto}
-.ft-cta-title{font-family:var(--f-en);font-size:clamp(28px,4.5vw,56px);font-weight:800;color:#fff;letter-spacing:-.02em;line-height:1.1;margin-bottom:18px}
-.ft-cta-title span{color:var(--accent)}
-.ft-cta-sub{font-size:var(--body-size);color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:32px}
-.ft-cta-tags{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:48px}
-
-/* RESPONSIVE HOME-SPECIFIC */
+/* RESPONSIVE HOME */
 @media(max-width:1024px){
   .result-grid{grid-template-columns:repeat(2,1fr)}
-  .proof-num-grid{grid-template-columns:repeat(2,1fr)}
+  .pf-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:768px){
   .hero{min-height:100svh;height:100svh}
@@ -162,21 +92,13 @@
   .hero-ctas .btn{width:100%;justify-content:center}
   .result-grid{grid-template-columns:1fr}
   .pf-grid{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:repeat(2,1fr)}
-  .process-steps::before{display:none}
-  .proof-num-grid{grid-template-columns:repeat(2,1fr)}
-  .review-grid{grid-template-columns:1fr}
   .tl-img{display:none}
   .tagline-row{gap:clamp(8px,3vw,20px)}
   .pf-card{aspect-ratio:3/2}
-  .pn-item{padding:28px 20px}
-  .cta-main-btns{flex-direction:column;align-items:center}
-  .btn-white,.btn-outline{width:100%;max-width:320px;justify-content:center}
   .pain-head{font-size:clamp(22px,6vw,36px)}
+  .pf-header{flex-direction:column;align-items:flex-start}
 }
 @media(max-width:480px){
-  .process-steps{grid-template-columns:1fr}
-  .proof-num-grid{grid-template-columns:1fr 1fr}
   .tl-word{font-size:clamp(28px,9vw,56px)}
   .pf-grid{grid-template-columns:1fr}
 }
@@ -325,12 +247,6 @@
   </div>
 </section>
 
-<!-- CTA-03 STRIP -->
-<div class="cta03-strip">
-  <div class="cta03-text">지금 <span>무료 상담</span>을 신청하시면 담당자가 당일 연락드립니다.</div>
-  <a href="#cta" class="cta03-btn">무료 상담 신청 →</a>
-</div>
-
 <!-- TAGLINE -->
 <section class="tagline">
   <div class="tagline-inner">
@@ -415,138 +331,6 @@
   </div>
 </section>
 
-<!-- PROCESS -->
-<section class="process">
-  <div class="wrap">
-    <div class="process-head" data-reveal>
-      <span class="process-eyebrow">How We Work</span>
-      <h2 class="process-title">RASA의 업무 방식</h2>
-    </div>
-    <div class="process-steps">
-      <div class="process-step" data-slide>
-        <div class="process-num">01</div>
-        <h3>브리핑</h3>
-        <p>목표·예산·타겟을 함께 정리합니다</p>
-      </div>
-      <div class="process-step" data-slide>
-        <div class="process-num">02</div>
-        <h3>전략 설계</h3>
-        <p>최적 채널과 예산 배분을 제안합니다</p>
-      </div>
-      <div class="process-step" data-slide>
-        <div class="process-num">03</div>
-        <h3>빠른 실행</h3>
-        <p>확정 후 48시간 내 캠페인을 시작합니다</p>
-      </div>
-      <div class="process-step" data-slide>
-        <div class="process-num">04</div>
-        <h3>성과 보고</h3>
-        <p>주 단위 리포트로 투명하게 공유합니다</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROOF 숫자 -->
-<section class="proof-num">
-  <div class="proof-num-grid">
-    <div class="pn-item" data-slide>
-      <span class="pn-num">200+</span>
-      <span class="pn-label">Brands</span>
-    </div>
-    <div class="pn-item" data-slide>
-      <span class="pn-num">350%</span>
-      <span class="pn-label">Avg ROAS</span>
-    </div>
-    <div class="pn-item" data-slide>
-      <span class="pn-num">48h</span>
-      <span class="pn-label">Launch Speed</span>
-    </div>
-    <div class="pn-item" data-slide>
-      <span class="pn-num">100+</span>
-      <span class="pn-label">Media Partners</span>
-    </div>
-  </div>
-</section>
-
-<!-- PROOF 후기 -->
-<section class="proof-review">
-  <div class="wrap">
-    <div class="proof-review-head" data-reveal>
-      <span class="proof-review-eyebrow">Client Review</span>
-      <h2 class="proof-review-title">실제 클라이언트의 말</h2>
-    </div>
-    <div class="review-grid">
-      <div class="review-card" data-slide>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">담당자가 자주 바뀌지 않고, 연락도 항상 당일에 옵니다. 이런 대행사는 처음이에요.</p>
-        <div class="review-author">
-          <div class="review-avatar ph"></div>
-          <div><div class="review-name">김○○ 대표</div><div class="review-role">뷰티 브랜드</div></div>
-        </div>
-      </div>
-      <div class="review-card" data-slide>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">집행 2주 만에 ROAS가 300%를 넘었습니다. 숫자로 보여주는 팀이라 믿음이 갑니다.</p>
-        <div class="review-author">
-          <div class="review-avatar ph"></div>
-          <div><div class="review-name">이○○ 마케터</div><div class="review-role">이커머스</div></div>
-        </div>
-      </div>
-      <div class="review-card" data-slide>
-        <div class="review-stars">★★★★★</div>
-        <p class="review-text">언론홍보부터 인플루언서까지 원스톱으로 해결돼서 관리 부담이 크게 줄었습니다.</p>
-        <div class="review-author">
-          <div class="review-avatar ph"></div>
-          <div><div class="review-name">박○○ CMO</div><div class="review-role">스타트업</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="faq" id="faq">
-  <div class="wrap">
-    <div class="faq-head" data-reveal>
-      <span class="faq-eyebrow">FAQ</span>
-      <h2 class="faq-title">자주 묻는 질문</h2>
-    </div>
-    <div class="faq-inner">
-      <div class="faq-item">
-        <button class="faq-q">최소 계약 기간이 있나요? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>기본 1개월 단위로 계약하며 장기 계약 시 할인 혜택을 드립니다.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">예산이 얼마부터 가능한가요? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>서비스별로 다르지만 월 200만원 이상의 예산부터 집행 가능합니다. 무료 상담에서 예산에 맞는 플랜을 제안해드립니다.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">계약 후 얼마나 빨리 시작되나요? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>계약 완료 후 48시간 이내 캠페인을 시작합니다. 빠른 실행이 RASA의 핵심 강점입니다.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q">성과 보고는 어떻게 이루어지나요? <span class="faq-icon">+</span></button>
-        <div class="faq-a"><p>주 1회 정기 보고서와 실시간 대시보드를 제공합니다. 언제든 담당자에게 문의하시면 당일 답변드립니다.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA-MAIN -->
-<section class="cta-main" id="cta">
-  <div class="cta-main-urgency">
-    <div class="cta-main-dot"></div>
-    지금 3팀 상담 가능
-  </div>
-  <h2 class="cta-main-title">지금 시작하면<br>경쟁사보다 빠릅니다</h2>
-  <p class="cta-main-sub">무료 상담 후 마음에 들지 않으면 진행하지 않아도 됩니다.<br>부담 없이 연락주세요.</p>
-  <div class="cta-main-btns">
-    <button class="btn btn-white btn-lg" onclick="document.getElementById('floatingForm')?.classList.remove('collapsed')">무료 상담 신청</button>
-    <a href="rasa_service.html" class="btn btn-outline btn-lg">서비스 보기</a>
-  </div>
-</section>
-
 <!-- FOOTER CTA -->
 <section class="ft-cta">
   <div class="ft-cta-inner">
@@ -561,7 +345,7 @@
     </div>
     <div class="ft-cta-links" data-reveal>
       <a href="#" class="ft-link">Contact Us →</a>
-      <a href="rasa_service.html" class="ft-link">Service Deck ↗</a>
+      <a href="#" class="ft-link">Service Deck ↗</a>
     </div>
   </div>
 </section>
