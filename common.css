@@ -175,11 +175,11 @@ img{display:block;max-width:100%}
 /* RESPONSIVE COMMON */
 @media(max-width:768px){
   /* NAV 모바일 — 햄버거 좌, 로고 중앙, CTA 우 */
-  .nav-inner{grid-template-columns:auto 1fr auto}
-  .nav-logo{text-align:center}
+  .nav-inner{position:relative;display:flex;align-items:center}
+  .nav-logo{position:absolute;left:50%;transform:translateX(-50%)}
   .nav-links{display:none}
-  .nav-right{gap:8px}
-  .hamburger{display:flex}
+  .nav-right{display:flex;align-items:center;justify-content:space-between;width:100%}
+  .hamburger{display:flex;order:-1}
   .floating-form{display:none}
   .m-call-btn{display:flex}
   .m-form-sheet{display:block}
