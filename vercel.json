@@ -1,9 +1,9 @@
 {
   "routes": [
     { "src": "/", "dest": "/rasa_redesign.html" },
-    { "src": "/service", "dest": "/rasa_service.html" },
-    { "src": "/campaign", "dest": "/rasa_campaign.html" },
-    { "src": "/campaign/detail", "dest": "/rasa_campaign_detail.html" },
-    { "src": "/(.*)", "dest": "/$1" }
+    { "src": "/rasa_redesign.html", "dest": "/rasa_redesign.html" },
+    { "src": "/rasa_service.html", "dest": "/rasa_service.html" },
+    { "src": "/rasa_campaign.html", "dest": "/rasa_campaign.html" },
+    { "src": "/rasa_campaign_detail.html", "dest": "/rasa_campaign_detail.html" }
   ]
 }
