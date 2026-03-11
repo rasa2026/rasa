@@ -178,8 +178,9 @@ img{display:block;max-width:100%}
   .nav-inner{position:relative;display:flex;align-items:center}
   .nav-logo{position:absolute;left:50%;transform:translateX(-50%)}
   .nav-links{display:none}
-  .nav-right{display:flex;align-items:center;justify-content:space-between;width:100%}
-  .hamburger{display:flex;order:-1}
+  .nav-right{display:flex;align-items:center;width:100%;justify-content:flex-end}
+  .nav-cta{display:none}
+  .hamburger{display:flex;order:-1;margin-right:auto}
   .floating-form{display:none}
   .m-call-btn{display:flex}
   .m-form-sheet{display:block}
