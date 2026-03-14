@@ -108,23 +108,42 @@ img{display:block;max-width:100%}
 .float-submit{width:100%;background:var(--accent);color:#fff;font-family:var(--f-sans);font-weight:600;font-size:13px;padding:11px;border-radius:2px;border:none;cursor:pointer;transition:background .2s}
 .float-submit:hover{background:var(--accent-dark)}
 
-/* CONTACT ITEMS (사이드바·시트 공통) */
+/* CONTACT ITEMS — 모바일 시트 공통 */
 .contact-item{padding:11px 0;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:3px}
 .contact-item:last-child{border-bottom:none}
 .contact-label{font-size:10px;font-weight:600;letter-spacing:.15em;color:var(--text-muted)}
 .contact-val{font-family:var(--f-sans);font-size:13px;font-weight:500;color:var(--text);text-decoration:none;transition:color .2s}
 a.contact-val:hover{color:var(--accent)}
 
-/* FLOATING FORM 데스크탑 */
-.floating-form{position:fixed;top:50%;right:0;transform:translateY(-50%) translateX(0);width:260px;background:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;padding:26px 22px;z-index:99;box-shadow:-4px 0 24px rgba(0,0,0,.07);transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.floating-form.collapsed{transform:translateY(-50%) translateX(260px)}
-.float-toggle{position:absolute;left:-36px;top:50%;transform:translateY(-50%);width:36px;height:52px;background:#fff;border:1px solid var(--border);border-right:none;border-radius:8px 0 0 8px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:-3px 0 12px rgba(0,0,0,.06);transition:background .2s}
-.float-toggle:hover{background:var(--bg-subtle)}
-.float-toggle svg{width:14px;height:14px;transition:transform .4s;stroke:var(--text-muted)}
+/* FLOATING CONTACT 데스크탑 */
+.floating-form{position:fixed;top:50%;right:0;transform:translateY(-50%) translateX(0);width:240px;background:#0A0A0A;border:none;border-radius:12px 0 0 12px;padding:28px 22px;z-index:99;box-shadow:-6px 0 32px rgba(0,0,0,.18);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.floating-form.collapsed{transform:translateY(-50%) translateX(240px)}
+.float-toggle{position:absolute;left:-40px;top:50%;transform:translateY(-50%);width:40px;height:56px;background:#0A0A0A;border:none;border-radius:12px 0 0 12px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:-4px 0 16px rgba(0,0,0,.2);transition:background .2s}
+.float-toggle:hover{background:#1a1a1a}
+.float-toggle svg{width:14px;height:14px;transition:transform .4s;stroke:rgba(255,255,255,.5)}
 .floating-form.collapsed .float-toggle svg{transform:rotate(180deg)}
-.float-logo-img{height:20px;width:auto;display:block;margin-bottom:14px}
-.float-title{font-family:var(--f-head);font-size:14px;font-weight:700;margin-bottom:4px}
-.float-sub{font-size:11px;color:var(--text-muted);margin-bottom:16px;line-height:1.6}
+/* header */
+.float-header{margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08)}
+.float-eyebrow{font-family:var(--f-sans);font-size:9px;font-weight:600;letter-spacing:.22em;color:var(--accent);display:block;margin-bottom:8px}
+.float-title{font-family:var(--f-sans);font-size:16px;font-weight:700;color:#fff;margin-bottom:6px;line-height:1.2}
+.float-sub{font-size:11px;color:rgba(255,255,255,.4);line-height:1.65;margin:0}
+/* contact rows */
+.float-contacts{display:flex;flex-direction:column;gap:2px;margin-bottom:18px}
+.fc-item{display:flex;align-items:center;gap:11px;padding:10px 10px;border-radius:8px;text-decoration:none;transition:background .2s;cursor:default}
+a.fc-item{cursor:pointer}
+a.fc-item:hover{background:rgba(255,255,255,.06)}
+.fc-icon{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fc-icon svg{width:15px;height:15px;stroke:rgba(255,255,255,.6);fill:none}
+.fc-icon svg[fill="currentColor"]{fill:rgba(255,255,255,.6);stroke:none}
+.fc-info{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+.fc-label{font-size:9px;font-weight:600;letter-spacing:.18em;color:rgba(255,255,255,.3)}
+.fc-val{font-family:var(--f-sans);font-size:12px;font-weight:500;color:rgba(255,255,255,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fc-arrow{width:14px;height:14px;flex-shrink:0;stroke:rgba(255,255,255,.25);transition:stroke .2s}
+a.fc-item:hover .fc-arrow{stroke:var(--accent)}
+/* badge */
+.float-badge{display:inline-flex;align-items:center;gap:6px;font-family:var(--f-sans);font-size:10px;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:.04em}
+.float-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:badge-pulse 2s ease infinite}
+@keyframes badge-pulse{0%,100%{opacity:1}50%{opacity:.4}}
 
 /* MOBILE CALL BTN — 모바일에서 숨김 */
 .m-call-btn{display:none}
