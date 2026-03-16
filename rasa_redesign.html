@@ -18,12 +18,12 @@
 .hero-ctas{display:flex;gap:12px}
 
 /* SOCIAL BAR */
-.social-bar{background:var(--bg);padding:clamp(40px,5vw,64px) 0}
+.social-bar{background:var(--bg);padding:clamp(40px,5vw,64px) 0;overflow:hidden}
 .social-bar .s-label{text-align:center;display:block;margin-bottom:clamp(28px,3vw,40px);font-size:15px;font-weight:600;letter-spacing:.1em;color:var(--text-muted)}
-.brand-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,2vw,24px);max-width:calc(var(--max) + var(--px)*2);margin:0 auto;padding:0 var(--px)}
-.brand-item{aspect-ratio:3/2;display:flex;align-items:center;justify-content:center}
-.brand-item img{width:100%;height:100%;object-fit:contain;padding:16px}
-@media(max-width:768px){.brand-grid{grid-template-columns:repeat(2,1fr)}}
+.brand-grid{display:flex;width:max-content;animation:brand-scroll 30s linear infinite}
+.brand-item{flex-shrink:0;display:flex;align-items:center;justify-content:center;height:48px;padding:0 clamp(28px,4vw,56px)}
+.brand-item img{height:100%;width:auto;object-fit:contain}
+@keyframes brand-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 /* PAIN */
 .pain{background:var(--bg);padding:var(--py) 0;text-align:center}
@@ -363,7 +363,31 @@
   </div>
 </section>
 
-<!-- SOCIAL BAR (로고 준비 중) -->
+<!-- SOCIAL BAR -->
+<section class="social-bar">
+  <span class="s-label">Brands We've Worked With</span>
+  <div class="brand-grid">
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/hansin.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/MMs.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/SharkNinja.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/livet.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/kakao.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/snickers.jpg" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/gena.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/rio.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/baby.png" alt="brand"></div>
+    <!-- 복제 (무한 루프) -->
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/hansin.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/MMs.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/SharkNinja.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/livet.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/kakao.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/snickers.jpg" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/gena.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/rio.png" alt="brand"></div>
+    <div class="brand-item"><img src="https://ewuclxxwhimjocxzyluo.supabase.co/storage/v1/object/public/rasa/baby.png" alt="brand"></div>
+  </div>
+</section>
 
 <!-- FOOTER CTA -->
 <section class="ft-cta">
