@@ -80,17 +80,36 @@
 
 <!-- FLOATING FORM — 데스크탑 -->
 <div class="floating-form" id="floatingForm">
-  <button class="float-toggle" id="floatToggle" aria-label="폼 열기/닫기">
+  <button class="float-toggle" id="floatToggle" aria-label="사이드바 열기/닫기">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
   </button>
-  <div class="float-title">광고 문의</div>
-  <div class="float-sub">연락처를 남겨주세요.<br>당일 답변 드립니다.</div>
-  <div class="float-field"><label>이름</label><input type="text" placeholder="홍길동"></div>
-  <div class="float-field"><label>연락처</label><input type="tel" placeholder="010-0000-0000"></div>
-  <div class="float-field"><label>회사명</label><input type="text" placeholder="(주)회사명"></div>
-  <div class="float-agree"><input type="checkbox"><span>개인정보 수집 및 이용에 동의합니다</span><button type="button" class="privacy-toggle">[자세히]</button></div>
-  <div class="privacy-detail">수집 항목: 이름, 연락처, 회사명 / 수집 목적: 광고 상담 및 견적 안내 / 보유 기간: 상담 완료 후 1년 / 귀하는 동의를 거부할 권리가 있으나 거부 시 상담 서비스 이용이 제한될 수 있습니다.</div>
-  <button class="float-submit">문의 등록</button>
+  <div class="float-header">
+    <span class="float-eyebrow">CONTACT US</span>
+    <div class="float-title">상담 문의</div>
+    <p class="float-sub">편하신 방법으로<br>바로 연결하세요.</p>
+  </div>
+  <div class="float-contacts">
+    <a href="tel:010-9910-8221" class="fc-item">
+      <div class="fc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+      </div>
+      <div class="fc-info">
+        <span class="fc-label">CALL</span>
+        <span class="fc-val">010-9910-8221</span>
+      </div>
+      <svg class="fc-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+    <a href="mailto:PJH8221@nate.com" class="fc-item">
+      <div class="fc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      </div>
+      <div class="fc-info">
+        <span class="fc-label">EMAIL</span>
+        <span class="fc-val">PJH8221@nate.com</span>
+      </div>
+      <svg class="fc-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+    </a>
+  </div>
 </div>
 
 <!-- MOBILE CTA 버튼 -->
@@ -101,14 +120,16 @@
 <div class="m-form-sheet" id="mFormSheet">
   <div class="m-sheet-handle"></div>
   <button class="m-sheet-close" id="mSheetClose">×</button>
-  <div class="m-sheet-title">광고 문의</div>
-  <div class="m-sheet-sub">연락처를 남겨주세요. 당일 답변 드립니다.</div>
-  <div class="float-field"><label>이름</label><input type="text" placeholder="홍길동"></div>
-  <div class="float-field"><label>연락처</label><input type="tel" placeholder="010-0000-0000"></div>
-  <div class="float-field"><label>회사명</label><input type="text" placeholder="(주)회사명"></div>
-  <div class="float-agree"><input type="checkbox"><span>개인정보 수집 및 이용에 동의합니다</span><button type="button" class="privacy-toggle">[자세히]</button></div>
-  <div class="privacy-detail">수집 항목: 이름, 연락처, 회사명 / 수집 목적: 광고 상담 및 견적 안내 / 보유 기간: 상담 완료 후 1년 / 귀하는 동의를 거부할 권리가 있으나 거부 시 상담 서비스 이용이 제한될 수 있습니다.</div>
-  <button class="float-submit">문의 등록</button>
+  <div class="m-sheet-title">상담 문의</div>
+  <div class="m-sheet-sub">편하신 방법으로 바로 연결하세요.</div>
+  <div class="contact-item">
+    <div class="contact-label">CALL</div>
+    <a href="tel:010-9910-8221" class="contact-val">010-9910-8221</a>
+  </div>
+  <div class="contact-item">
+    <div class="contact-label">EMAIL</div>
+    <a href="mailto:PJH8221@nate.com" class="contact-val">PJH8221@nate.com</a>
+  </div>
 </div>
 
 <!-- PAGE HERO -->
